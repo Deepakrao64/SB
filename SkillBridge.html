@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Bridge - Software Testing Training Institute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+		   position: relative;
+		   width: 100%;
+		   height: 100%; /* Set the desired height for the header */
+		   background-color: #000; /* Set a background color for the header */
+		   overflow: hidden;
+}
+        .logo-video {
+           position: absolute;
+		   top: 0%;
+		   left: 0%;
+		   width: auto; /* Adjust the width as needed */
+		   height: auto; /* Adjust the height as needed */
+		   max-width: 50%;
+		   max-height: 50%;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        .tab-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .tab-button:hover {
+            background-color: #45a049;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+        .active {
+            display: block;
+        }
+        .btn-open-window {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-open-window:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+        <video src="D:/Deepak/SkillBridgeWebApp/logo.mp4" autoplay loop muted class="logo"></video>
+</header>
+
+<div class="tabs">
+    <button class="tab-button" onclick="openTab('class-details')">Class Details</button>
+    <button class="tab-button" onclick="openTab('selenium-practice')">Selenium Practice</button>
+</div>
+
+<div id="class-details" class="tab-content">
+    <h2>Class Details</h2>
+    <p>Welcome to Skill Bridge's Software Testing Training Institute! Here you will find information about our classes, schedules, and more.</p>
+    <!-- Add class details content here -->
+</div>
+
+<div id="selenium-practice" class="tab-content">
+    <h2>Selenium Practice</h2>
+    <p>Welcome to the Selenium Practice page. Here you can practice various Selenium actions on different web elements.</p>
+    
+    <h3>Radio Buttons</h3>
+    <label>
+        <input type="radio" name="radio-option" value="option1"> Option 1
+    </label>
+    <label>
+        <input type="radio" name="radio-option" value="option2"> Option 2
+    </label>
+    <label>
+        <input type="radio" name="radio-option" value="option3"> Option 3
+    </label>
+
+    <h3>Dropdowns</h3>
+    <select id="dropdown">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+
+    <h3>Forms</h3>
+    <form id="sample-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3>Open Child Windows</h3>
+    <button class="btn-open-window" onclick="openChildWindow('D:\Deepak\SkillBridgeWebApp\childwindow1.html')">Class Details</button>
+    <button class="btn-open-window" onclick="openChildWindow('D:\Deepak\SkillBridgeWebApp\childwindow2.html')">Announcements</button>
+    <button class="btn-open-window" onclick="openChildWindow('D:\Deepak\SkillBridgeWebApp\childwindow3.html')">Placement Announcements</button>
+    <button class="btn-open-window" onclick="openChildWindow('D:\Deepak\SkillBridgeWebApp\childwindow4.html')">Assignments</button>
+    <button class="btn-open-window" onclick="openChildWindow('D:\Deepak\SkillBridgeWebApp\childwindow5.html')">Companies Tie-ups</button>
+</div>
+
+<script>
+    function openTab(tabName) {
+        const tabContents = document.getElementsByClassName('tab-content');
+        for (const tabContent of tabContents) {
+            tabContent.classList.remove('active');
+        }
+
+        document.getElementById(tabName).classList.add('active');
+    }
+
+    function openChildWindow(url) {
+        const features = 'width=800,height=600,resizable=yes,scrollbars=yes';
+        window.open(url, '_blank', features);
+    }
+</script>
+
+</body>
+</html>
