@@ -65,12 +65,35 @@ body {
         <video src="logo.mp4" autoplay loop muted class="logo"></video>
 </header>
 <h2>Assignments</h2>
-<p>Complete the following assignments to practice your software testing skills:</p>
-<ol>
-    <li>Write test cases for a login form.</li>
-    <li>Create a test plan for a shopping cart functionality.</li>
-    <li>Perform a usability testing on a sample website.</li>
-</ol>
+<p> Automate flow below<br>
+    1. Open Client Onboarding page by clicking Button Below <br>
+    2. After clicking on verify user placed on client onboarding page<br>
+    3. Fill All the details<br>
+    4. Click on submit<br>
+    5. Verify popup displayed showing investor reference<br>
+    6. Click on proceed button<br>
+    7. Handle alert<br>
+    8. After accepting alert user should be placed on Mutual Fund Portfolio page<br>
+    9. Close all tabs<br>
+    10. Print Test case passed successfully<br>
+</p>
+<button type="submit" onclick="openChildWindow('MutualFundClient/ClientOnboarding.html')">Click Here to open Client Onboarding page</button>
+
+<script>
+    function openTab(tabName) {
+        const tabContents = document.getElementsByClassName('tab-content');
+        for (const tabContent of tabContents) {
+            tabContent.classList.remove('active');
+        }
+
+        document.getElementById(tabName).classList.add('active');
+    }
+
+    function openChildWindow(url) {
+        const features = 'width=800,height=600,resizable=yes,scrollbars=yes';
+        window.open(url, '_blank', features);
+    }
+</script>
 
 </body>
 </html>

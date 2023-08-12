@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Onboarding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Sky Blue */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select[multiple] {
+            height: auto;
+        }
+        .radio-label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .required-field {
+            border-color: #ff3333;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+        .popup.active {
+            display: block;
+        }
+        .popup h2 {
+            margin-top: 0;
+        }
+        .popup button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Investor Onboarding</h1>
+        <form id="investorForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" class="required-field" required>
+            
+            <label for="email">Email:</label>
+			<iframe src="MutualFundClient/EmailIframe.html" frameborder="1">
+				<input type="email" id="email" name="email" class="required-field" required>
+			</iframe>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" class="required-field" required>
+            
+            <label>Gender:</label>
+            <label class="radio-label"><input type="radio" name="gender" value="male" required> Male</label>
+            <label class="radio-label"><input type="radio" name="gender" value="female" required> Female</label>
+            
+            <label for="documentType">Document Type:</label>
+            <select id="documentType" name="documentType" class="required-field" required>
+                <option value="" disabled selected>Select document type</option>
+                <option value="passport">Passport</option>
+                <option value="aadhar">Aadhar Card</option>
+                <option value="driver">Driver's License</option>
+            </select>
+            
+            <label for="investmentAmount">Investment Amount:</label>
+            <input type="number" id="investmentAmount" name="investmentAmount" min="0" step="100" class="required-field" required>
+            
+            <label for="investmentType">Investment Type:</label>
+            <select id="investmentType" name="investmentType" class="required-field" required>
+                <option value="" disabled selected>Select investment type</option>
+                <option value="equity">Equity</option>
+                <option value="debt">Debt</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+            
+            <label for="preferredSectors">Preferred Sectors:</label>
+            <select id="preferredSectors" name="preferredSectors[]" multiple class="required-field" required>
+                <option value="" disabled selected>Select preferred sectors</option>
+                <option value="technology">Technology</option>
+                <option value="finance">Finance</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="energy">Energy</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Popup for displaying reference number -->
+    <div id="referencePopup" class="popup">
+        <h2>Confirmation</h2>
+        <p>Your details have been successfully confirmed.</p>
+        <p>Your Investor Reference is: <span id="referenceNumber"></span></p>
+        <p>Do you want to proceed with your investment?</p>
+        <button onclick="proceedWithInvestment()">Proceed</button>
+        <button onclick="editDetails()">Edit Client Details</button>
+    </div>
+
+    <script>
+        document.getElementById('investorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            submitForm();
+        });
+
+        function submitForm() {
+            const requiredFields = document.querySelectorAll('.required-field');
+            let allFieldsFilled = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    field.classList.add('required-field');
+                    allFieldsFilled = false;
+                } else {
+                    field.classList.remove('required-field');
+                }
+            });
+
+            if (!allFieldsFilled) {
+                alert('Please fill in all mandatory fields.');
+                return;
+            }
+
+            const reference = generateReference();
+            document.getElementById('referenceNumber').textContent = reference;
+
+            // Display the popup
+            const popup = document.getElementById('referencePopup');
+            popup.classList.add('active');
+        }
+
+        function generateReference() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const length = 10;
+            let reference = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                reference += characters.charAt(randomIndex);
+            }
+            return reference;
+        }
+
+        function proceedWithInvestment() {
+            // Here you can perform further actions for the investment process
+            alert('Thank you for confirming your details. You can now proceed with your investment.');
+			            const portfolioTab = window.open('portfolio.html', '_blank');
+            portfolioTab.document.write(`
+                <html>
+                <head>
+                    <title>Mutual Fund Portfolio</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        h1 {
+                            color: #333;
+                        }
+                        ul {
+                            list-style: none;
+                            padding: 0;
+                        }
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Your Mutual Fund Portfolio</h1>
+                    <p>This is your empty portfolio. Start investing in funds to build your portfolio.</p>
+                    <h2>Available Funds to Buy</h2>
+                    <ul>
+                        <li>Fund A</li>
+                        <li>Fund B</li>
+                        <li>Fund C</li>
+                        <!-- Add more funds as needed -->
+                    </ul>
+                </body>
+                </html>
+            `);
+            portfolioTab.document.close();
+
+            closeModal();
+        }
+
+        function editDetails() {
+            const confirmation = confirm('Are you sure you want to edit your details?');
+            if (confirmation) {
+                window.open('index.html', '_self');
+            }
+        }
+
+        function closeModal() {
+            const popup = document.getElementById('referencePopup');
+            popup.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
