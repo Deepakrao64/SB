@@ -125,7 +125,7 @@
     <h2>Project Name</h2>
     <p>Mutual Fund Client Portal</p>
     <div>
-        <button class="btn-open-window" href="MutualFundClient/LoginPage.html">Click here to open MF Client Portal</button>
+        <button class="btn-open-window" onclick="openNewHtmlPage()">Click here to open MF Client Portal</button>
     </div>
 </div>
 
@@ -142,6 +142,9 @@
     function openChildWindow(url) {
         const features = 'width=800,height=600,resizable=yes,scrollbars=yes';
         window.open(url, '_blank', features);
+    }
+    function openNewHtmlPage() {
+        window.location.href = 'MutualFundClient/LoginPage.html'; // Replace 'new-page.html' with the actual URL of the new HTML page
     }
 </script>
 
