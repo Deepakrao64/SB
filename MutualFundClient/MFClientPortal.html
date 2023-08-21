@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Fund Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .nav {
+            background-color: #f7f7f7;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            color: #007bff;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+        .context-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .context-menu li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .context-menu li:hover {
+            background-color: #f2f2f2;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+        .modal.active {
+            display: block;
+        }
+        .modal h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .modal button.confirm-btn {
+            margin-top: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .modal button.confirm-btn:hover {
+            background-color: #218838;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .success-btn {
+            background-color: #28a745;
+        }
+        .success-btn:hover {
+            background-color: #218838;
+        }
+        .info-btn {
+            background-color: #17a2b8;
+        }
+        .info-btn:hover {
+            background-color: #138496;
+        }
+		        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+        .context-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .context-menu li {
+            padding: 10px;
+            cursor: pointer;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+        .context-menu li:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+        }
+		.modal button.cancel-btn {
+			margin-top: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .modal button.cancel-btn:hover {
+            background-color: #c82333;
+        }
+		.fund-name {
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+		.loader {
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #3498db;
+			  width: 120px;
+			  height: 120px;
+			  -webkit-animation: spin 2s linear infinite; /* Safari */
+			  animation: spin 2s linear infinite;
+		}
+		/* Safari */
+	@-webkit-keyframes spin {
+	  0% { -webkit-transform: rotate(0deg); }
+	  100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Mutual Fund Portal</h1>
+</div>
+<div class="nav">
+    <a href="javascript:void(0);" class="tab-link" data-tab="client-details">Client Details</a>
+    <a href="javascript:void(0);" class="tab-link" data-tab="search-fund">Search Fund</a>
+    <a href="javascript:void(0);" class="tab-link" data-tab="collections">Collections</a>
+    <a href="javascript:void(0);" class="tab-link" data-tab="portfolio">Mutual Fund Portfolio</a>
+</div>
+
+<!-- Client Details Page (Default) -->
+<div class="container tab-content client-details">
+    <h2>Client Details</h2>
+    <p>Here you can view and manage your client details.</p>
+</div>
+
+<!-- Search Fund Page -->
+<div class="container tab-content search-fund" style="display: none;">
+    <h2>Search Fund</h2>
+    <table>
+        <tr>
+            <th>Fund Name</th>
+            <th>Category</th>
+            <th>NAV</th>
+        </tr>
+        <tr>
+            <td>Axis Bluechip Fund</td>
+            <td>Equity</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>ICICI Prudential Bluechip Fund</td>
+            <td>Equity</td>
+            <td>65</td>
+        </tr>
+        <tr>
+            <td>Mirae Asset Large Cap Fund</td>
+            <td>Equity</td>
+            <td>75</td>
+        </tr>
+        <tr>
+            <td>SBI Small Cap Fund</td>
+            <td>Equity</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>HDFC Hybrid Equity Fund</td>
+            <td>Hybrid</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>Kotak Emerging Equity Fund</td>
+            <td>Equity</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>Aditya Birla Sun Life Tax Relief 96</td>
+            <td>Equity</td>
+            <td>80</td>
+        </tr>
+        <tr>
+            <td>Franklin India Low Duration Fund</td>
+            <td>Debt</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>Axis Long Term Equity Fund</td>
+            <td>Equity</td>
+            <td>70</td>
+        </tr>
+        <tr>
+            <td>L&T Midcap Fund</td>
+            <td>Equity</td>
+            <td>55</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Collections Page -->
+<div class="container tab-content collections" style="display: none;">
+    <h2>Collections</h2>
+    <table>
+        <tr>
+            <th>Collection Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Equity Growth</td>
+            <td>Investment ideas for long-term equity growth.</td>
+        </tr>
+        <tr>
+            <td>Debt Investments</td>
+            <td>Investment ideas for stable income through debt funds.</td>
+        </tr>
+        <tr>
+            <td>Tax Saving</td>
+            <td>Investment ideas for tax-saving purposes.</td>
+        </tr>
+        <tr>
+            <td>Short Term Gains</td>
+            <td>Investment ideas for short-term capital gains.</td>
+        </tr>
+        <tr>
+            <td>Hybrid Strategies</td>
+            <td>Investment ideas combining equity and debt for balanced returns.</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Mutual Fund Portfolio Page -->
+<div class="container tab-content portfolio" style="display: none;">
+    <h2>Mutual Fund Portfolio</h2>
+    <table>
+        <tr>
+            <th>Fund Name</th>
+            <th>Investment Amount</th>
+            <th>Current Value</th>
+            <th>Profit/Loss</th>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)" ondblclick="showFundDetailsModal('Axis Bluechip Fund')">Axis Bluechip Fund</td>
+            <td>$1000</td>
+            <td>$1100</td>
+            <td>+10%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">Mirae Asset Large Cap Fund</td>
+            <td>$1500</td>
+            <td>$1600</td>
+            <td>+7%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">SBI Small Cap Fund</td>
+            <td>$1200</td>
+            <td>$1250</td>
+            <td>+4%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">HDFC Hybrid Equity Fund</td>
+            <td>$1800</td>
+            <td>$1700</td>
+            <td>-6%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">Aditya Birla Sun Life Tax Relief 96</td>
+            <td>$2000</td>
+            <td>$1900</td>
+            <td>-5%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">Axis Long Term Equity Fund</td>
+            <td>$2500</td>
+            <td>$2600</td>
+            <td>+4%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">Kotak Emerging Equity Fund</td>
+            <td>$2200</td>
+            <td>$2400</td>
+            <td>+9%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">Franklin India Low Duration Fund</td>
+            <td>$1700</td>
+            <td>$1750</td>
+            <td>+3%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">L&T Midcap Fund</td>
+            <td>$2800</td>
+            <td>$2750</td>
+            <td>-2%</td>
+        </tr>
+        <tr>
+            <td class="fund-name" oncontextmenu="showContextMenu(event)">ICICI Prudential Bluechip Fund</td>
+            <td>$3000</td>
+            <td>$2900</td>
+            <td>-3%</td>
+        </tr>
+    </table>
+</div>
+<div id="contextMenu" class="context-menu">
+    <ul>
+        <li onclick="redeemFunds()">Redeem Funds</li>
+        <li onclick="investMore()">Invest More</li>
+    </ul>
+</div>
+<!-- Redeem Confirmation Modal -->
+<div id="redeemModal" class="modal">
+    <h2>Redeem Funds</h2>
+    <p>Are you sure you want to redeem funds?</p>
+    <button class="confirm-btn" onclick="showPayoutOptions('redeem')">Confirm</button>
+    <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+
+</div>
+
+<!-- Invest More Modal -->
+<div id="investModal" class="modal">
+    <h2>Invest More</h2>
+    <p>Would you like to invest more funds?</p>
+    <button class="confirm-btn" onclick="showPayoutOptions('invest')">Confirm</button>
+    <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+
+</div>
+
+<!-- Payout Options Modal -->
+<div id="payoutModal" class="modal">
+    <h2>Select Payout Option</h2>
+    <button class="confirm-btn" onclick="showSuccessMessage('Physical Check')">Redeem via Physical Check</button>
+    <button class="confirm-btn" onclick="showSuccessMessage('Credit To Bank')">Credit to Bank</button>
+</div>
+<div id="fundDetailsModal" class="modal">
+    <h2 class="modal-title">Fund Details</h2>
+    <div id="fundDetailsLoader" class="loader" style="display: none;"></div>
+    <div id="fundDetailsContent" class="fund-details" style="display: none;">
+        <p class="fund-category"><strong>Category:</strong> Equity</p>
+        <p class="fund-description"><strong>Description:</strong> An equity mutual fund focused on blue-chip companies.</p>
+        <p class="fund-performance"><strong>Performance:</strong> 10% YTD</p>
+    </div>
+    <button class="cancel-btn" onclick="closeModal()">Close</button>
+</div>
+
+
+
+
+
+<script>
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const tab = link.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                if (tab === 'portfolio') {
+                    // Delay showing the portfolio content for 5 seconds
+                    setTimeout(() => {
+                        document.querySelector(`.${tab}`).style.display = 'block';
+                    }, 5000); // 5000 milliseconds = 5 seconds
+                } else {
+                    document.querySelector(`.${tab}`).style.display = 'block';
+                }
+            });
+        });
+
+        function showContextMenu(event) {
+            event.preventDefault();
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
+        }
+
+        function hideContextMenu() {
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'none';
+        }
+
+        function redeemFunds() {
+            hideContextMenu();
+            const redeemModal = document.getElementById('redeemModal');
+            redeemModal.classList.add('active');
+        }
+
+        function investMore() {
+            hideContextMenu();
+            const investModal = document.getElementById('investModal');
+            investModal.classList.add('active');
+        }
+
+        function showPayoutOptions(action) {
+            const modal = document.getElementById(`${action}Modal`);
+            modal.classList.remove('active');
+            const payoutModal = document.getElementById('payoutModal');
+            payoutModal.classList.add('active');
+        }
+
+        function showSuccessMessage(option) {
+            const payoutModal = document.getElementById('payoutModal');
+            payoutModal.classList.remove('active');
+            alert(`Redemption successfully requested via ${option}.`);
+        }
+		function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+        const fundDetailsData = {
+            'Axis Bluechip Fund': {
+                category: 'Equity',
+                description: 'An equity mutual fund focused on blue-chip companies.',
+                performance: '10% YTD'
+            },
+            // Add more fund details here
+        };
+        // Define the getFundDetails function
+    function getFundDetails(fundName) {
+        // Simulate an API call to retrieve fund details from the data object
+        return fundDetailsData[fundName] || {};
+    }
+		function showFundDetailsModal(fundName) {
+				const fundDetails = getFundDetails(fundName);
+				const modal = document.getElementById('fundDetailsModal');
+				const fundDetailsLoader = document.getElementById('fundDetailsLoader');
+				const fundDetailsContent = document.getElementById('fundDetailsContent');
+
+				modal.querySelector('.modal-title').textContent = fundName;
+				fundDetailsLoader.style.display = 'block';
+				fundDetailsContent.style.display = 'none';
+
+				// Simulate a delay of 10 seconds (10000 milliseconds)
+				setTimeout(() => {
+					fundDetailsLoader.style.display = 'none';
+					fundDetailsContent.style.display = 'block';
+					fundDetailsContent.innerHTML = `
+						<p class="fund-category"><strong>Category:</strong> ${fundDetails.category}</p>
+						<p class="fund-description"><strong>Description:</strong> ${fundDetails.description}</p>
+						<p class="fund-performance"><strong>Performance:</strong> ${fundDetails.performance}</p>
+					`;
+				}, 10000);
+
+				modal.classList.add('active');
+			}
+
+    </script>
+</body>
+</html>
