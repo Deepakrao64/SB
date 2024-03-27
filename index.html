@@ -125,11 +125,21 @@
     </label>
 
     <h3>Dropdowns</h3>
-    <select id="dropdown">
+    <h2>Select Multiple Options:</h2>
+    <select multiple onchange="optionSelected(this)">
         <option value="option1">Option 1</option>
         <option value="option2">Option 2</option>
         <option value="option3">Option 3</option>
     </select>
+
+    <h2>Select Country:</h2>
+    <select onchange="optionSelected(this)">
+        <option value="">Select Country</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <!-- Add more countries here -->
+    </select>
+
 
     <h3>Forms</h3>
     <form id="sample-form">
