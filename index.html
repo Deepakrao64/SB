@@ -175,30 +175,30 @@
         <h2>Form with Various Inputs</h2>
         <form action="/submit" method="POST" id="test-form">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" data-test-id="username-input" placeholder="Enter your username"><br><br>
+            <input type="text" id="username" name="username" data-testid="username-input" placeholder="Enter your username"><br><br>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" data-testid="password-input" required><br><br>
 
             <label for="gender">Gender:</label>
-            <select id="gender" name="gender" data-test-id="gender-select">
+            <select id="gender" name="gender" data-testid="gender-select">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select><br><br>
 
             <label for="newsletter">
-                <input type="checkbox" id="newsletter" name="newsletter" data-test-id="newsletter-checkbox" checked>
+                <input type="checkbox" id="newsletter" name="newsletter" data-testid="newsletter-checkbox" checked>
                 Subscribe to newsletter
             </label><br><br>
 
-            <button type="submit" class="btn" data-test-id="submit-button">Submit</button>
+            <button type="submit" class="btn" data-testid="submit-button">Submit</button>
         </form>
     </section>
 
     <section>
         <h2>Table Example</h2>
-        <table id="example-table" data-test-id="example-table">
+        <table id="example-table" data-testid="example-table">
             <thead>
             <tr>
                 <th>Item</th>
@@ -207,12 +207,12 @@
             </thead>
             <tbody>
             <tr>
-                <td data-test-id="item-name">Apple</td>
+                <td data-testid="item-name">Apple</td>
                 <td>$1</td>
             </tr>
             <tr>
                 <td>Banana</td>
-                <td data-test-id="item-price">$0.5</td>
+                <td data-testid="item-price">$0.5</td>
             </tr>
             </tbody>
         </table>
@@ -220,13 +220,13 @@
 
     <section>
         <h2>Buttons with Different Attributes</h2>
-        <button onclick="alert('Clicked!')" class="btn" id="alert-button" data-test-id="alert-button">Click Me</button>
+        <button onclick="alert('Clicked!')" class="btn" id="alert-button" data-testid="alert-button">Click Me</button>
         <button class="btn hidden" data-testid="hidden-button">Hidden Button</button>
     </section>
 
     <footer>
-        <p data-test-id="footer-text">This is a footer</p>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer" data-test-id="external-link">External Link</a>
+        <p data-testid="footer-text">This is a footer</p>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" data-testid="external-link">External Link</a>
     </footer></div>
 <script>
     function openTab(tabName) {
