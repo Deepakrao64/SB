@@ -93,6 +93,7 @@
         <button class="tab-button" onclick="openTab('class-details')">Class Details</button>
         <button class="tab-button" onclick="openTab('selenium-practice')">Selenium Practice</button>
         <button class="tab-button" onclick="openTab('project')">Project</button>
+        <button class="tab-button" onclick="openTab('practice-page')">Practice Page</button>
     </div>
 </header>
 
@@ -169,7 +170,64 @@
         <button class="btn-open-window" onclick="openNewHtmlPage()">Click here to open MF Client Portal</button>
     </div>
 </div>
+<div id="practice-page" class="tab-content">
+    <section>
+        <h2>Form with Various Inputs</h2>
+        <form action="/submit" method="POST" id="test-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" data-test-id="username-input" placeholder="Enter your username"><br><br>
 
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" data-testid="password-input" required><br><br>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" data-test-id="gender-select">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+
+            <label for="newsletter">
+                <input type="checkbox" id="newsletter" name="newsletter" data-test-id="newsletter-checkbox" checked>
+                Subscribe to newsletter
+            </label><br><br>
+
+            <button type="submit" class="btn" data-test-id="submit-button">Submit</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Table Example</h2>
+        <table id="example-table" data-test-id="example-table">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-test-id="item-name">Apple</td>
+                <td>$1</td>
+            </tr>
+            <tr>
+                <td>Banana</td>
+                <td data-test-id="item-price">$0.5</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Buttons with Different Attributes</h2>
+        <button onclick="alert('Clicked!')" class="btn" id="alert-button" data-test-id="alert-button">Click Me</button>
+        <button class="btn hidden" data-testid="hidden-button">Hidden Button</button>
+    </section>
+
+    <footer>
+        <p data-test-id="footer-text">This is a footer</p>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" data-test-id="external-link">External Link</a>
+    </footer></div>
 <script>
     function openTab(tabName) {
         const tabContents = document.getElementsByClassName('tab-content');
