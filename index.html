@@ -1,273 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Skill Bridge - Software Testing Training Institute</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-		   position: relative;
-		   width: 100%;
-		   height: 100%; /* Set the desired height for the header */
-		   background-color: #000; /* Set a background color for the header */
-		   overflow: hidden;
-}
-        .logo-video {
-           position: absolute;
-		   top: 0%;
-		   left: 0%;
-		   width: auto; /* Adjust the width as needed */
-		   height: auto; /* Adjust the height as needed */
-		   max-width: 50%;
-		   max-height: 50%;
-        }
-        .tabs {
-            display: flex;
-            justify-content: space-around;
-            background-color: #f2f2f2;
-            padding: 10px;
-        }
-        .tab-button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .tab-button:hover {
-            background-color: #45a049;
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-        }
-        .active {
-            display: block;
-        }
-        .btn-open-window {
-            background-color: #3498db;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn-open-window:hover {
-            background-color: #2980b9;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-          }
-
-          .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-          }
-
-          /* Disable the close button */
-          .disabled {
-            opacity: 0.5;
-            pointer-events: none;
-          }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Bridge | Testing Lab</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header class="header">
-    <video src="logo.mp4" autoplay loop muted class="logo"></video>
-    <div class="tabs">
-        <button class="tab-button" onclick="openTab('class-details')">Class Details</button>
-        <button class="tab-button" onclick="openTab('selenium-practice')">Selenium Practice</button>
+<header class="site-header">
+    <div class="brandbar"><a class="brand" href="index.html"><span class="brand-mark">SB</span> Skill Bridge</a><span>Software testing training lab</span></div>
+    <div class="hero">
+        <div><p class="eyebrow">Learn by doing</p><h1>Build sharper tests. Ship with confidence.</h1><p class="hero-copy">A focused practice space for automation workflows, test data, and a hands-on mutual fund portal project.</p><button class="btn gold" onclick="openTab('selenium-practice')">Open practice lab</button></div>
+        <div class="hero-art"><div class="art-panel"><strong>Today's workspace</strong><div class="art-line"></div><div class="art-line short"></div><small>Selectors · Forms · Windows · Tables</small></div></div>
+    </div>
+    <nav class="tabs" aria-label="Main navigation">
+        <button class="tab-button" onclick="openTab('class-details')">Class details</button>
+        <button class="tab-button" onclick="openTab('selenium-practice')">Practice lab</button>
         <button class="tab-button" onclick="openTab('project')">Project</button>
-        <button class="tab-button" onclick="openTab('practice-page')">Practice Page</button>
-    </div>
+        <button class="tab-button" onclick="openTab('practice-page')">Test page</button>
+    </nav>
 </header>
-
-<div id="class-details" class="tab-content">
-    <h2>Class Details</h2>
-    <p>Welcome to Skill Bridge's Software Testing Training Institute! Here you will find information about our classes, schedules, and more.</p>
-    <!-- Add class details content here -->
-</div>
-
-<div id="selenium-practice" class="tab-content">
-    <h2>Selenium Practice</h2>
-    <p>Welcome to the Selenium Practice page. Here you can practice various Selenium actions on different web elements.</p>
-    <button id="openModalBtn">Say Hello</button>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <h2>Modal Content</h2>
-            <p>This is a modal window.</p>
-            <button id="closeModalBtn">Close</button>
-        </div>
-    </div>
-    <h3>Radio Buttons</h3>
-    <label>
-        <input type="radio" name="radio-option" value="option1"> Option 1
-    </label>
-    <label>
-        <input type="radio" name="radio-option" value="option2"> Option 2
-    </label>
-    <label>
-        <input type="radio" name="radio-option" value="option3"> Option 3
-    </label>
-
-    <h3>Dropdowns</h3>
-    <h2>Select Multiple Options:</h2>
-    <select multiple onchange="optionSelected(this)">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-    </select>
-
-    <h2>Select Country:</h2>
-    <select onchange="optionSelected(this)">
-        <option value="">Select Country</option>
-        <option value="india">India</option>
-        <option value="usa">USA</option>
-        <!-- Add more countries here -->
-    </select>
-
-
-    <h3>Forms</h3>
-    <form id="sample-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <h3>Open Child Windows</h3>
-    <button class="btn-open-window" onclick="openChildWindow('childwindow1.html')">Class Details</button>
-    <button class="btn-open-window" onclick="openChildWindow('childwindow2.html')">Announcements</button>
-    <button class="btn-open-window" onclick="openChildWindow('childwindow3.html')">Placement Announcements</button>
-    <button class="btn-open-window" onclick="openChildWindow('childwindow4.html')">Assignments</button>
-    <button class="btn-open-window" onclick="openChildWindow('childwindow5.html')">Companies Tie-ups</button>
-</div>
-<div id="project" class="tab-content">
-    <h2>Project Name</h2>
-    <p>Mutual Fund Client Portal</p>
-    <div>
-        <button class="btn-open-window" onclick="openNewHtmlPage()">Click here to open MF Client Portal</button>
-    </div>
-</div>
-<div id="practice-page" class="tab-content">
-    <section>
-        <h2>Form with Various Inputs</h2>
-        <form action="/submit" method="POST" id="test-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" data-testid="username-input" placeholder="Enter your username"><br><br>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" data-testid="password-input" required><br><br>
-
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" data-testid="gender-select">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select><br><br>
-
-            <label for="newsletter">
-                <input type="checkbox" id="newsletter" name="newsletter" data-testid="newsletter-checkbox" checked>
-                Subscribe to newsletter
-            </label><br><br>
-
-            <button type="submit" class="btn" data-testid="submit-button">Submit</button>
-        </form>
+<main class="main">
+    <section id="class-details" class="tab-content active">
+        <div class="section-head"><div><p class="eyebrow">Your learning path</p><h2>Everything you need to practice with purpose.</h2></div><p>Explore training resources, open a practice surface, and follow the client portal assignment from login to portfolio.</p></div>
+        <div class="grid"><article class="card"><div class="card-icon">01</div><h3>Core testing skills</h3><p>Build confidence with reliable locators, forms, tables, and browser interactions.</p></article><article class="card"><div class="card-icon">02</div><h3>Automation scenarios</h3><p>Use realistic windows, alerts, modals, and data states to sharpen your test flows.</p></article><article class="card"><div class="card-icon">03</div><h3>Portfolio project</h3><p>Walk through an investor onboarding journey and inspect a mutual fund dashboard.</p></article></div>
     </section>
-
-    <section>
-        <h2>Table Example</h2>
-        <table id="example-table" data-testid="example-table">
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th>Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td data-testid="item-name">Apple</td>
-                <td>$1</td>
-            </tr>
-            <tr>
-                <td>Banana</td>
-                <td data-testid="item-price">$0.5</td>
-            </tr>
-            </tbody>
-        </table>
+    <section id="selenium-practice" class="tab-content">
+        <div class="section-head"><div><p class="eyebrow">Interactive surface</p><h2>Practice lab</h2></div><p>Try each control as you would in an automated test. The child windows below are ready-made scenarios.</p></div>
+        <div class="practice-grid"><div class="panel stack"><div><h3>Feedback modal</h3><p>Test delayed availability and modal controls.</p></div><button class="btn" id="openModalBtn">Say hello</button><div class="choice-row"><label><input type="radio" name="radio-option" value="option1"> Option 1</label><label><input type="radio" name="radio-option" value="option2"> Option 2</label><label><input type="radio" name="radio-option" value="option3"> Option 3</label></div><select multiple onchange="optionSelected(this)"><option value="option1">Option 1</option><option value="option2">Option 2</option><option value="option3">Option 3</option></select><select onchange="optionSelected(this)"><option value="">Select country</option><option value="india">India</option><option value="usa">USA</option></select></div><div class="panel"><h3>Sample form</h3><form id="sample-form" class="stack"><label>Name<input type="text" id="name" name="name"></label><label>Email<input type="email" id="email" name="email"></label><label>Message<textarea id="message" rows="4"></textarea></label><input class="btn" type="submit" value="Submit"></form></div></div>
+        <div class="panel" style="margin-top:18px"><div class="section-head"><div><h3>Child window scenarios</h3><p>Launch focused pages for multi-window automation practice.</p></div></div><div class="choice-row"><button class="btn secondary" onclick="openChildWindow('childwindow1.html')">Class details</button><button class="btn secondary" onclick="openChildWindow('childwindow2.html')">Announcements</button><button class="btn secondary" onclick="openChildWindow('childwindow3.html')">Placements</button><button class="btn secondary" onclick="openChildWindow('childwindow4.html')">Assignments</button><button class="btn secondary" onclick="openChildWindow('childwindow5.html')">Partners</button></div></div>
     </section>
-
-    <section>
-        <h2>Buttons with Different Attributes</h2>
-        <button onclick="alert('Clicked!')" class="btn" id="alert-button" data-testid="alert-button">Click Me</button>
-        <button class="btn hidden" data-testid="hidden-button">Hidden Button</button>
-    </section>
-
-    <footer>
-        <p data-testid="footer-text">This is a footer</p>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer" data-testid="external-link">External Link</a>
-    </footer></div>
+    <section id="project" class="tab-content"><div class="section-head"><div><p class="eyebrow">Capstone workflow</p><h2>Mutual fund client portal</h2></div><p>Take a complete onboarding flow from credentials to investor portfolio.</p></div><div class="card"><div class="card-icon">MF</div><h3>Investor journey</h3><p>Authenticate, register client details, confirm the reference number, and explore fund data.</p><button class="btn" onclick="openNewHtmlPage()">Launch client portal</button></div></section>
+    <section id="practice-page" class="tab-content"><div class="section-head"><div><p class="eyebrow">Locator playground</p><h2>Test page</h2></div><p>Common controls and data attributes collected in one dependable surface.</p></div><div class="practice-grid"><section class="panel"><h3>Form with various inputs</h3><form action="/submit" method="POST" id="test-form" class="stack"><label>Username<input type="text" name="username" data-testid="username-input" placeholder="Enter your username"></label><label>Password<input type="password" name="password" data-testid="password-input" required></label><label>Gender<select name="gender" data-testid="gender-select"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></label><label class="choice-row"><span><input type="checkbox" name="newsletter" data-testid="newsletter-checkbox" checked> Subscribe to newsletter</span></label><button type="submit" class="btn" data-testid="submit-button">Submit</button></form></section><section class="panel"><h3>Table example</h3><table id="example-table" data-testid="example-table"><thead><tr><th>Item</th><th>Price</th></tr></thead><tbody><tr><td data-testid="item-name">Apple</td><td>$1</td></tr><tr><td>Banana</td><td data-testid="item-price">$0.5</td></tr></tbody></table><h3 style="margin-top:28px">Button states</h3><button onclick="alert('Clicked!')" class="btn" id="alert-button" data-testid="alert-button">Click me</button><button class="btn secondary" data-testid="hidden-button" hidden>Hidden button</button></section></div><footer class="footer"><p data-testid="footer-text">Skill Bridge testing lab</p><a href="https://example.com" target="_blank" rel="noopener noreferrer" data-testid="external-link">External link</a></footer></section>
+</main>
+<div id="myModal" class="modal"><div class="modal-content"><p class="eyebrow">Practice response</p><h2>Nice work.</h2><p>This modal is ready for explicit wait and interaction checks.</p><button id="closeModalBtn" class="btn">Close</button></div></div>
 <script>
-    function openTab(tabName) {
-        const tabContents = document.getElementsByClassName('tab-content');
-        for (const tabContent of tabContents) {
-            tabContent.classList.remove('active');
-        }
-
-        document.getElementById(tabName).classList.add('active');
-    }
-
-    function openChildWindow(url) {
-        const features = 'width=800,height=600,resizable=yes,scrollbars=yes';
-        window.open(url, '_blank', features);
-    }
-    function openNewHtmlPage() {
-        window.location.href = 'MutualFundClient/LoginPage.html'; // Replace 'new-page.html' with the actual URL of the new HTML page
-    }
-    const openModalBtn = document.getElementById("openModalBtn");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const modal = document.getElementById("myModal");
-
-    openModalBtn.addEventListener("click", () => {
-      modal.style.display = "block";
-      closeModalBtn.disabled = false; // Enable the close button
-      closeModalBtn.classList.remove("disabled"); // Remove the disabled style
-
-      // Disable close button for 10 seconds
-      closeModalBtn.disabled = true; // Disable the close button
-      closeModalBtn.classList.add("disabled"); // Add the disabled style
-      setTimeout(() => {
-        closeModalBtn.disabled = false; // Enable the close button
-        closeModalBtn.classList.remove("disabled"); // Remove the disabled style
-      }, 10000); // 10 seconds in milliseconds
-    });
-
-    closeModalBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
+function openTab(tabName) { document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active')); document.getElementById(tabName).classList.add('active'); }
+function openChildWindow(url) { window.open(url, '_blank', 'width=800,height=600,resizable=yes,scrollbars=yes'); }
+function openNewHtmlPage() { window.location.href = 'MutualFundClient/LoginPage.html'; }
+function optionSelected(select) { select.dataset.selected = Array.from(select.selectedOptions).map(option => option.value).join(','); }
+const openModalBtn = document.getElementById('openModalBtn'); const closeModalBtn = document.getElementById('closeModalBtn'); const modal = document.getElementById('myModal');
+openModalBtn.addEventListener('click', () => { modal.style.display = 'grid'; closeModalBtn.disabled = true; setTimeout(() => { closeModalBtn.disabled = false; }, 1000); });
+closeModalBtn.addEventListener('click', () => { modal.style.display = 'none'; });
 </script>
-
 </body>
 </html>
