@@ -1,0 +1,194 @@
+PRACTICE LAB PLAYWRIGHT LOCATORS
+================================
+
+The examples below target elements from index.html > Practice lab.
+
+1. ROLE LOCATORS
+----------------
+
+// Username textbox
+await page.getByRole('textbox', { name: 'Username' }).fill('tester');
+
+// Submit button
+await page.getByRole('button', { name: 'Submit' }).click();
+
+// Accept the confirmation dialog
+page.once('dialog', dialog => dialog.accept());
+await page.getByRole('button', { name: 'Alert button' }).click();
+
+// Reject the confirmation dialog
+page.once('dialog', dialog => dialog.dismiss());
+await page.getByTestId('alert-button').click();
+
+// Disabled button
+await page.getByRole('button', { name: 'Disabled' }).isDisabled();
+
+// Table
+await page.getByRole('table').isVisible();
+
+// Table row
+await page.getByRole('row', { name: /Apple.*\$1.*Available/ }).isVisible();
+
+// Link
+await page.getByRole('link', { name: 'External link' }).click();
+
+
+2. LABEL LOCATORS
+-----------------
+
+// Text inputs
+await page.getByLabel('Username').fill('tester');
+await page.getByLabel('Password').fill('secret');
+await page.getByLabel('Email').fill('tester@example.com');
+await page.getByLabel('Phone').fill('+1 555 0100');
+
+// Date and time controls
+await page.getByLabel('Date').fill('2026-09-06');
+await page.getByLabel('Time').fill('10:30');
+await page.getByLabel('Month').fill('2026-09');
+
+// Number input
+await page.getByLabel('Number').fill('5');
+
+// Range input
+await page.getByLabel('Range').fill('75');
+
+// File upload
+await page.getByLabel('File upload').setInputFiles('sample.txt');
+
+// Search input
+await page.getByLabel('Search').fill('Apple');
+
+
+3. TEST ID LOCATORS
+-------------------
+
+await page.getByTestId('username-input').fill('tester');
+await page.getByTestId('password-input').fill('secret');
+await page.getByTestId('email-input').fill('tester@example.com');
+await page.getByTestId('phone-input').fill('+1 555 0100');
+await page.getByTestId('address-input').fill('123 Main Street');
+await page.getByTestId('occupation-input').fill('Tester');
+await page.getByTestId('date-of-birth-input').fill('1990-01-01');
+await page.getByTestId('gender-select').selectOption('female');
+await page.getByTestId('topics-multiselect').selectOption(['testing', 'automation']);
+await page.getByTestId('newsletter-checkbox').check();
+await page.getByTestId('submit-button').click();
+
+// Table cells
+await page.getByTestId('item-name').toHaveText('Apple');
+await page.getByTestId('item-price').toHaveText('$0.5');
+
+// Special controls
+await page.getByTestId('date-input').fill('2026-09-06');
+await page.getByTestId('time-input').fill('10:30');
+await page.getByTestId('month-input').fill('2026-09');
+await page.getByTestId('color-input').fill('#28b486');
+await page.getByTestId('range-input').fill('80');
+await page.getByTestId('number-input').fill('7');
+await page.getByTestId('file-input').setInputFiles('sample.txt');
+await page.getByTestId('drop-zone').isVisible();
+await page.getByTestId('hover-button').hover();
+await page.getByTestId('contenteditable').fill('Updated text');
+await page.getByTestId('keyboard-input').press('Enter');
+await page.getByTestId('js-alert').click();
+await page.getByTestId('double-click-target').dblclick();
+await expect(page.getByTestId('sample-image')).toHaveAttribute('alt', 'Sample testing lab illustration');
+
+
+4. SELECT LOCATORS
+-------------------
+
+// Standard select
+await page.locator('select[name="gender"]').selectOption('other');
+
+// Multi-select can select several options
+await page.locator('select[multiple]').selectOption(['option1', 'option3']);
+
+// Datalist input
+await page.locator('input[list="browsers"]').fill('Chrome');
+
+
+5. CSS LOCATORS
+---------------
+
+await page.locator('#test-form').isVisible();
+await page.locator('#example-table').isVisible();
+await page.locator('#alert-button').click();
+await page.locator('[data-testid="tooltip-trigger"]').hover();
+await page.locator('[contenteditable="true"]').fill('Edited content');
+await page.locator('details summary').click();
+await page.locator('progress[value="65"]').isVisible();
+await page.locator('meter').isVisible();
+
+
+6. TEXT LOCATORS
+----------------
+
+await page.getByText('Apple', { exact: true }).isVisible();
+await page.getByText('Available', { exact: true }).isVisible();
+await page.getByText('Open disclosure', { exact: true }).click();
+await page.getByText('Hover target', { exact: true }).hover();
+
+
+7. TOOLTIP LOCATOR
+-------------------
+
+await page.getByTestId('tooltip-trigger').hover();
+await page.getByRole('tooltip').toHaveText('This is a tooltip example.');
+
+
+8. DRAG AND DROP
+----------------
+
+await page.getByTestId('drop-zone').dispatchEvent('dragenter');
+await page.getByTestId('drop-zone').dispatchEvent('dragover');
+await page.getByTestId('drop-zone').dispatchEvent('drop');
+
+// Recommended when testing a real file drop:
+await page.getByTestId('file-input').setInputFiles('sample.txt');
+
+
+9. KEYBOARD LOCATORS
+--------------------
+
+const keyboardInput = page.getByTestId('keyboard-input');
+await keyboardInput.focus();
+await keyboardInput.press('Control+A');
+await keyboardInput.fill('Keyboard test');
+await keyboardInput.press('Enter');
+await expect(page.locator('#keyboard-output')).toContainText('Enter');
+
+
+10. FORM VALIDATION
+-------------------
+
+await page.getByTestId('username-input').fill('tester');
+await page.getByTestId('password-input').fill('secret');
+await page.getByTestId('email-input').fill('tester@example.com');
+await page.getByTestId('submit-button').click();
+await expect(page.getByTestId('test-form')).toBeVisible();
+
+
+11. HOVER EXAMPLE
+-----------------
+
+await page.getByTestId('hover-button').hover();
+await expect(page.getByTestId('hover-button')).toBeVisible();
+
+
+12. LOCATOR PRIORITY
+--------------------
+
+1. Prefer getByRole() for accessible user-facing controls.
+2. Use getByLabel() for form fields.
+3. Use getByTestId() for stable automation contracts.
+4. Use getByText() for visible text when appropriate.
+5. Use CSS selectors for implementation-specific cases.
+6. Avoid XPath unless no better locator is available.
+
+Example chain:
+const form = page.getByTestId('test-form');
+await form.getByLabel('Username').fill('tester');
+await form.getByLabel('Password').fill('secret');
+await form.getByRole('button', { name: 'Submit' }).click();
