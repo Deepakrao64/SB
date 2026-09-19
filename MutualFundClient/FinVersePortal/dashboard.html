@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinVerse | Dashboard</title>
+    <meta name="description" content="FinVerse wealth management dashboard" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar" data-testid="sidebar" aria-label="Sidebar navigation">
+        <div class="brand-wrap">
+          <div class="brand-mark">FV</div>
+          <div>
+            <div class="brand-name">FinVerse</div>
+          </div>
+        </div>
+
+        <div class="user-mini-card">
+          <div class="avatar" id="sidebar-avatar">U</div>
+          <div class="user-details">
+            <span class="user-name" id="sidebar-user-name">Loading...</span>
+            <span class="user-role" id="sidebar-user-role">Investor</span>
+          </div>
+        </div>
+
+        <nav class="nav-menu" aria-label="Main navigation">
+          <a class="nav-item active" href="dashboard.html">Dashboard</a>
+          <a class="nav-item" href="onboarding.html">Client Onboarding</a>
+          <a class="nav-item" href="funds.html">Fund Explorer</a>
+          <a class="nav-item" href="portfolio.html">Portfolio</a>
+          <a class="nav-item" href="trade-center.html">Trade Center</a>
+          <a class="nav-item" href="compliance.html">Compliance</a>
+          <a class="nav-item" href="reports.html">Reports</a>
+          <a class="nav-item" href="settings.html">Settings</a>
+        </nav>
+
+        <button class="logout-button" type="button" data-testid="logout-button">Logout</button>
+      </aside>
+
+      <div class="main-panel">
+        <header class="topbar" aria-label="Top header">
+          <div class="header-left">
+            <div class="page-title">Dashboard</div>
+            <div class="breadcrumb">Home &nbsp;&gt;&nbsp; Dashboard</div>
+          </div>
+
+          <div class="header-actions">
+            <label class="search-wrap" aria-label="Global search">
+              <span class="search-icon">⌕</span>
+              <input type="text" data-testid="global-search" placeholder="Search funds, transactions..." aria-label="Search dashboard" />
+            </label>
+
+            <div class="notification-wrap">
+              <button class="icon-button" type="button" data-testid="notification-icon" aria-label="Notifications">
+                🔔
+                <span class="badge" id="notification-count">3</span>
+              </button>
+
+              <div class="notification-dropdown hidden" data-testid="notification-dropdown" aria-label="Notifications dropdown">
+                <div class="dropdown-header">
+                  <span>Notifications</span>
+                  <button type="button" class="mark-read" id="mark-read-button">Mark all as read</button>
+                </div>
+                <div id="notification-list"></div>
+              </div>
+            </div>
+
+            <div class="profile-wrap">
+              <button class="profile-button" type="button" data-testid="profile-menu" aria-label="User profile menu">
+                <span class="profile-avatar" id="profile-avatar">U</span>
+                <span class="profile-meta">
+                  <strong id="profile-name">User</strong>
+                  <small id="profile-role">Investor</small>
+                </span>
+                <span class="caret">▾</span>
+              </button>
+
+              <div class="profile-dropdown hidden" aria-label="Profile menu">
+                <button type="button">My Profile</button>
+                <button type="button">Settings</button>
+                <button type="button" id="profile-logout">Logout</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="content">
+          <section class="welcome-banner" data-testid="welcome-banner" aria-live="polite">
+            <div>
+              <p class="welcome-label">Portfolio overview</p>
+              <h2 id="welcome-text">Welcome Back, User</h2>
+            </div>
+
+            <div class="banner-metadata">
+              <span class="date-chip" id="current-date">-</span>
+              <span class="role-badge" data-testid="user-role-badge" id="role-badge">Investor</span>
+            </div>
+          </section>
+
+          <section class="kpi-grid" aria-label="Key performance indicators">
+            <article class="kpi-card" data-testid="portfolio-value-card">
+              <div class="card-label">Portfolio Value</div>
+              <div class="card-value" data-value="1245000" data-prefix="₹">₹0</div>
+              <div class="trend up">+2.4%</div>
+            </article>
+
+            <article class="kpi-card" data-testid="invested-amount-card">
+              <div class="card-label">Invested Amount</div>
+              <div class="card-value" data-value="1050000" data-prefix="₹">₹0</div>
+              <div class="trend neutral">+1.1%</div>
+            </article>
+
+            <article class="kpi-card" data-testid="daily-gain-card">
+              <div class="card-label">Today's Gain</div>
+              <div class="card-value" data-value="12450" data-prefix="₹">₹0</div>
+              <div class="trend up">+0.8%</div>
+            </article>
+
+            <article class="kpi-card" data-testid="active-sips-card">
+              <div class="card-label">Active SIPs</div>
+              <div class="card-value" data-value="5" data-suffix="">0</div>
+              <div class="trend neutral">2 due this month</div>
+            </article>
+          </section>
+
+          <div class="content-grid">
+            <section class="panel allocation-panel" aria-label="Asset allocation">
+              <div class="panel-header">
+                <h3>Asset Allocation</h3>
+              </div>
+
+              <div class="allocation-layout">
+                <div class="donut-chart-wrap">
+                  <div class="donut-chart" data-testid="allocation-chart" aria-label="Asset allocation chart">
+                    <div class="donut-center">
+                      <strong>60%</strong>
+                      <span>Equity</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="allocation-list">
+                  <div class="alloc-item"><span class="dot equity"></span><span>Equity</span><strong>60%</strong></div>
+                  <div class="alloc-item"><span class="dot debt"></span><span>Debt</span><strong>20%</strong></div>
+                  <div class="alloc-item"><span class="dot gold"></span><span>Gold</span><strong>10%</strong></div>
+                  <div class="alloc-item"><span class="dot liquid"></span><span>Liquid</span><strong>10%</strong></div>
+                </div>
+              </div>
+            </section>
+
+            <aside class="panel notification-panel" data-testid="notification-panel" aria-label="Notifications panel">
+              <div class="panel-header">
+                <h3>Alerts</h3>
+              </div>
+              <div id="notification-panel-list" class="notification-list"></div>
+            </aside>
+          </div>
+
+          <div class="bottom-grid">
+            <section class="panel watchlist-panel" data-testid="watchlist-section" aria-label="Watchlist">
+              <div class="panel-header">
+                <h3>Watchlist</h3>
+              </div>
+              <div id="watchlist-list" class="watchlist-list"></div>
+            </section>
+
+            <section class="panel actions-panel" aria-label="Quick actions">
+              <div class="panel-header">
+                <h3>Quick Actions</h3>
+              </div>
+              <div class="quick-actions" data-testid="quick-actions">
+                <button type="button" class="action-btn" data-action="onboarding">Start Client Onboarding</button>
+                <button type="button" class="action-btn" data-action="funds">Search Funds</button>
+                <button type="button" class="action-btn" data-action="trade">Place Trade</button>
+                <button type="button" class="action-btn" data-action="report">Download Report</button>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel transactions-panel">
+            <div class="panel-header transactions-header">
+              <h3>Recent Transactions</h3>
+              <div class="transaction-tools">
+                <input type="search" id="transaction-search" data-testid="transaction-search" placeholder="Search transactions..." aria-label="Search transactions" />
+                <button type="button" class="sort-btn" id="sort-amount">Sort by Amount</button>
+                <button type="button" class="sort-btn" id="sort-date">Sort by Date</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table data-testid="transaction-table" aria-label="Recent transactions table">
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Fund Name</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="transaction-table-body"></tbody>
+              </table>
+            </div>
+
+            <div class="pagination" aria-label="Transaction pagination">
+              <button type="button" id="prev-page">Previous</button>
+              <span id="page-indicator">Page 1 of 1</span>
+              <button type="button" id="next-page">Next</button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="skeleton-overlay" id="skeleton-overlay" aria-label="Loading dashboard">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card short"></div>
+      <div class="skeleton-grid">
+        <div class="skeleton-box"></div>
+        <div class="skeleton-box"></div>
+        <div class="skeleton-box"></div>
+        <div class="skeleton-box"></div>
+      </div>
+    </div>
+
+    <div class="toast-container" aria-live="polite" aria-atomic="true">
+      <div class="toast" data-testid="toast" id="toast"></div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinVerse Wealth Portal | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --navy: #0f172a;
+        --blue: #2563eb;
+        --muted: #64748b;
+        --white: #ffffff;
+        --border: #e2e8f0;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+        color: var(--navy);
+      }
+      .dashboard-shell {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+      }
+      .dashboard-card {
+        width: min(760px, 100%);
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        padding: 40px 32px;
+      }
+      .tag {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--blue);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 18px 0 12px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.06em;
+      }
+      p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+      .details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+      }
+      .detail-box {
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: #f8fafc;
+      }
+      .detail-box span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+      }
+      .detail-box strong {
+        font-size: 1.2rem;
+      }
+      .logout {
+        display: inline-block;
+        margin-top: 26px;
+        background: var(--navy);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <div class="dashboard-card">
+        <span class="tag">FinVerse</span>
+        <h1>Welcome to your wealth dashboard</h1>
+        <p id="welcome-message">Loading session...</p>
+
+        <div class="details">
+          <div class="detail-box">
+            <span>Access Role</span>
+            <strong id="user-role">-</strong>
+          </div>
+          <div class="detail-box">
+            <span>Portfolio Value</span>
+            <strong>$2.4M</strong>
+          </div>
+          <div class="detail-box">
+            <span>Performance</span>
+            <strong>+8.4%</strong>
+          </div>
+        </div>
+
+        <a class="logout" href="index.html">Return to Login</a>
+      </div>
+    </div>
+
+    <script>
+      const session = JSON.parse(localStorage.getItem('finverse-user-session') || '{}');
+      const welcomeMessage = document.getElementById('welcome-message');
+      const userRole = document.getElementById('user-role');
+
+      if (session.username && session.role) {
+        welcomeMessage.textContent = 'Good evening, ' + session.username + '. Your portfolio is ready.';
+        userRole.textContent = session.role;
+      } else {
+        welcomeMessage.textContent = 'Session not found. Please sign in again.';
+        userRole.textContent = 'Not available';
+      }
+    </script>
+  </body>
+</html>

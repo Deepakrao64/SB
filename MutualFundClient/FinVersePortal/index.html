@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinVerse Wealth Portal</title>
+    <meta name="description" content="Secure Wealth Management Platform for Investors & Relationship Managers" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="page-shell">
+        <aside class="brand-panel" aria-label="FinVerse brand panel">
+          <div class="brand-panel-inner">
+            <div class="brand-top">
+              <div class="brand-mark">FV</div>
+              <div class="brand-name">FinVerse</div>
+            </div>
+
+            <div class="brand-copy">
+              <h1>Secure Wealth Management Platform for Investors &amp; Relationship Managers</h1>
+              <p>Institutional-grade access to portfolios, compliance workflows, and client intelligence.</p>
+            </div>
+
+            <div class="security-list" aria-label="Security highlights">
+              <div class="security-item">
+                <div class="panel-icon" aria-hidden="true">🔒</div>
+                <div class="security-text">
+                  <strong>Bank-grade Security</strong>
+                  <span>Multi-layer authentication</span>
+                </div>
+              </div>
+
+              <div class="security-item">
+                <div class="panel-icon" aria-hidden="true">✅</div>
+                <div class="security-text">
+                  <strong>RBI Compliant KYC</strong>
+                  <span>Identity verification workflow</span>
+                </div>
+              </div>
+
+              <div class="security-item">
+                <div class="panel-icon" aria-hidden="true">🛡️</div>
+                <div class="security-text">
+                  <strong>Encrypted Transactions</strong>
+                  <span>Secure investment operations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <main class="login-panel" aria-label="Login panel">
+          <section class="login-card" data-testid="login-card" aria-labelledby="login-title">
+            <header class="card-header">
+              <div class="eyebrow">Portal Access</div>
+              <h1 id="login-title" data-testid="login-title">Welcome Back</h1>
+              <p>Sign in to access your investment portfolio.</p>
+            </header>
+
+            <form id="login-form" class="login-form" novalidate>
+              <div class="field-group">
+                <label for="username" aria-label="Username">Username</label>
+                <div class="input-shell">
+                  <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Enter username"
+                    autocomplete="username"
+                    aria-label="Username"
+                    data-testid="login-username"
+                  />
+                </div>
+                <div class="field-error" data-error-for="username"></div>
+              </div>
+
+              <div class="field-group">
+                <label for="password" aria-label="Password">Password</label>
+                <div class="input-shell">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    aria-label="Password"
+                    data-testid="login-password"
+                  />
+                  <button
+                    type="button"
+                    class="password-toggle"
+                    aria-label="Show password"
+                    data-testid="password-toggle"
+                  >👁️</button>
+                </div>
+                <div class="field-error" data-error-for="password"></div>
+              </div>
+
+              <div class="field-group">
+                <label for="user-role" aria-label="User role">Role</label>
+                <div class="input-shell">
+                  <select id="user-role" name="user-role" aria-label="User role" data-testid="login-role">
+                    <option value="Investor">Investor</option>
+                    <option value="Relationship Manager">Relationship Manager</option>
+                    <option value="Compliance Officer">Compliance Officer</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label class="checkbox-wrap" for="remember-me">
+                  <input id="remember-me" name="remember-me" type="checkbox" data-testid="remember-checkbox" />
+                  <span>Remember me</span>
+                </label>
+
+                <button type="button" class="link-button" data-testid="forgot-password">Forgot Password?</button>
+              </div>
+
+              <div class="login-error" id="login-error" data-testid="login-error" aria-live="polite"></div>
+
+              <button id="login-btn" class="primary-btn" type="submit" data-testid="login-button">
+                <span class="spinner hidden" aria-hidden="true"></span>
+                <span class="btn-text">Sign In Securely</span>
+              </button>
+            </form>
+
+            <div class="demo-credentials" aria-label="Demo credentials">
+              <div class="demo-header">Demo credentials</div>
+              <div class="demo-list">
+                <div class="demo-row"><span class="role-tag">Investor</span><strong>deepak</strong><span>/</span><span>Password@123</span></div>
+                <div class="demo-row"><span class="role-tag">RM</span><strong>rm01</strong><span>/</span><span>RM@123</span></div>
+                <div class="demo-row"><span class="role-tag">Compliance</span><strong>comp01</strong><span>/</span><span>Compliance@123</span></div>
+                <div class="demo-row"><span class="role-tag">Admin</span><strong>admin</strong><span>/</span><span>Admin@123</span></div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer" aria-label="Footer">
+        <div>© 2026 FinVerse Wealth Technologies Pvt. Ltd.</div>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Contact Support</a>
+        </div>
+      </footer>
+    </div>
+
+    <div id="forgot-password-modal" class="modal-backdrop hidden" aria-hidden="true" data-testid="forgot-password-modal">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header">
+          <h2 id="modal-title">Reset Password</h2>
+          <button type="button" class="close-modal" aria-label="Close modal">×</button>
+        </div>
+
+        <form id="forgot-password-form" class="modal-form" novalidate>
+          <div class="field-group">
+            <label for="fp-username">Username</label>
+            <div class="input-shell">
+              <input id="fp-username" name="fp-username" type="text" placeholder="Enter username" aria-label="Username" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="fp-email">Registered Email</label>
+            <div class="input-shell">
+              <input id="fp-email" name="fp-email" type="email" placeholder="Enter registered email" aria-label="Registered Email" />
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" data-testid="modal-cancel">Cancel</button>
+            <button type="submit" class="primary-btn">Send OTP</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast-container" aria-live="polite" aria-atomic="true">
+      <div id="toast" class="toast" data-testid="toast"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+  </body>
+</html>

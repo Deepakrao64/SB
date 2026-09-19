@@ -1,0 +1,63 @@
+:root {
+  --primary-navy: #0F172A;
+  --secondary-blue: #1D4ED8;
+  --accent-blue: #2563EB;
+  --success-green: #16A34A;
+  --error-red: #DC2626;
+  --background: #F8FAFC;
+  --panel: #FFFFFF;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  --light-blue: #DBEAFE;
+  --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 10px 26px rgba(37, 99, 235, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--primary-navy);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+input.invalid,
+select.invalid {
+  border-color: var(--error-red) !important;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
+}
+
+button,
+input,
+select {
+  transition: all 0.2s ease;
+}

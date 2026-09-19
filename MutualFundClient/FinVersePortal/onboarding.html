@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinVerse | Client Onboarding</title>
+    <meta name="description" content="FinVerse client onboarding workspace" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/onboarding.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar" data-testid="sidebar" aria-label="Sidebar navigation">
+        <div class="brand-wrap"><div class="brand-mark">FV</div><div class="brand-name">FinVerse</div></div>
+        <div class="user-mini-card"><div class="avatar" id="rm-avatar">U</div><div class="user-details"><span class="user-name" id="rm-name">Loading...</span><span class="user-role" id="rm-role">Relationship Manager</span></div></div>
+        <nav class="nav-menu" aria-label="Main navigation">
+          <a class="nav-item" href="dashboard.html">Dashboard</a>
+          <a class="nav-item active" href="onboarding.html">Client Onboarding</a>
+          <a class="nav-item" href="funds.html">Fund Explorer</a>
+          <a class="nav-item" href="portfolio.html">Portfolio</a>
+          <a class="nav-item" href="trade-center.html">Trade Center</a>
+          <a class="nav-item" href="compliance.html">Compliance</a>
+          <a class="nav-item" href="reports.html">Reports</a>
+          <a class="nav-item" href="settings.html">Settings</a>
+        </nav>
+        <button class="logout-button" type="button" data-testid="logout-button">Logout</button>
+      </aside>
+
+      <div class="main-panel">
+        <header class="topbar" aria-label="Top header">
+          <div><div class="page-title">Client Onboarding</div><div class="breadcrumb"><a href="dashboard.html">Home</a> &nbsp;&gt;&nbsp; Client Onboarding</div></div>
+          <div class="header-actions"><label class="search-wrap" aria-label="Global search"><span>⌕</span><input type="search" data-testid="global-search" placeholder="Search clients, funds..." aria-label="Global search" /></label><button class="icon-button" type="button" data-testid="notification-icon" aria-label="Notifications">🔔</button><span class="secure-chip">KYC workspace</span><div class="profile-wrap"><button class="profile-button" type="button" data-testid="profile-menu" aria-label="User profile menu"><span class="profile-avatar" id="profile-avatar">U</span><span class="profile-meta"><strong id="profile-name">User</strong><small id="profile-role">Relationship Manager</small></span><span>▾</span></button><div class="profile-dropdown hidden"><button type="button">My Profile</button><button type="button">Settings</button><button type="button" id="profile-logout">Logout</button></div></div></div>
+        </header>
+
+        <main class="content">
+          <section class="intro-banner"><div><p class="eyebrow">New client record</p><h1>Onboard a new investor</h1><p class="intro-copy">Capture verified client information for a compliant mutual fund relationship.</p></div><div class="draft-status" id="draft-status" aria-live="polite">Draft ready</div></section>
+
+          <nav class="stepper" data-testid="stepper" aria-label="Onboarding progress">
+            <button type="button" class="step active" data-step="1"><span>1</span><strong>Personal Details</strong></button>
+            <button type="button" class="step" data-step="2"><span>2</span><strong>Address Information</strong></button>
+            <button type="button" class="step" data-step="3"><span>3</span><strong>Financial Details</strong></button>
+            <button type="button" class="step" data-step="4"><span>4</span><strong>Risk Assessment</strong></button>
+            <button type="button" class="step" data-step="5"><span>5</span><strong>Document Upload</strong></button>
+            <button type="button" class="step" data-step="6"><span>6</span><strong>Review &amp; Submit</strong></button>
+          </nav>
+
+          <form id="onboarding-form" novalidate>
+            <section class="wizard-step active" data-panel="1" aria-labelledby="step-1-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 1 of 6</p><h2 id="step-1-title">Personal details</h2><p>Enter the investor's identity and contact information.</p></div><span class="required-note">* Required</span></div>
+              <div class="form-grid">
+                <div class="field"><label for="investor-id">Investor ID</label><input id="investor-id" name="investorId" data-testid="investor-id" readonly /></div>
+                <div class="field"><label for="first-name">First Name <i>*</i></label><input id="first-name" name="firstName" data-testid="first-name" autocomplete="given-name" /><small class="field-error" data-error-for="first-name"></small></div>
+                <div class="field"><label for="middle-name">Middle Name</label><input id="middle-name" name="middleName" data-testid="middle-name" /></div>
+                <div class="field"><label for="last-name">Last Name <i>*</i></label><input id="last-name" name="lastName" data-testid="last-name" autocomplete="family-name" /><small class="field-error" data-error-for="last-name"></small></div>
+                <div class="field"><label for="dob">Date of Birth <i>*</i></label><input id="dob" name="dob" type="date" data-testid="dob" /><small class="field-error" data-error-for="dob"></small></div>
+                <fieldset class="field radio-field"><legend>Gender <i>*</i></legend><label><input type="radio" name="gender" value="Male" data-testid="gender-male" /> Male</label><label><input type="radio" name="gender" value="Female" data-testid="gender-female" /> Female</label><label><input type="radio" name="gender" value="Other" data-testid="gender-other" /> Other</label><small class="field-error" data-error-for="gender"></small></fieldset>
+                <div class="field"><label for="mobile">Mobile Number <i>*</i></label><input id="mobile" name="mobile" inputmode="numeric" maxlength="10" data-testid="mobile-input" placeholder="10 digit mobile number" /><small class="field-error" data-error-for="mobile"></small></div>
+                <div class="field"><label for="email">Email Address <i>*</i></label><input id="email" name="email" type="email" data-testid="email-input" autocomplete="email" /><small class="field-error" data-error-for="email"></small></div>
+                <div class="field"><label for="pan">PAN Number <i>*</i></label><input id="pan" name="pan" maxlength="10" data-testid="pan-input" placeholder="ABCDE1234F" /><small class="field-error" data-error-for="pan"></small></div>
+                <div class="field"><label for="aadhaar">Aadhaar Number <i>*</i></label><input id="aadhaar" name="aadhaar" inputmode="numeric" maxlength="14" data-testid="aadhaar-input" placeholder="XXXX XXXX XXXX" /><small class="field-error" data-error-for="aadhaar"></small></div>
+                <div class="field"><label for="marital-status">Marital Status</label><select id="marital-status" name="maritalStatus" data-testid="marital-status"><option value="">Select status</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select></div>
+                <div class="field"><label for="nationality">Nationality</label><select id="nationality" name="nationality" data-testid="nationality"><option>Indian</option><option>Other</option></select></div>
+                <div class="field"><label for="occupation">Occupation</label><select id="occupation" name="occupation" data-testid="occupation"><option value="">Select occupation</option><option>Salaried</option><option>Self Employed</option><option>Business Owner</option><option>Retired</option><option>Professional</option><option>Student</option></select></div>
+              </div>
+            </section>
+
+            <section class="wizard-step" data-panel="2" aria-labelledby="step-2-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 2 of 6</p><h2 id="step-2-title">Address information</h2><p>Record current and permanent correspondence details.</p></div></div>
+              <div class="address-block"><h3>Current Address</h3><div class="form-grid"><div class="field field-wide"><label for="current-line1">Address Line 1 <i>*</i></label><input id="current-line1" data-address="current" name="currentLine1" data-testid="current-address-line1" /><small class="field-error" data-error-for="current-line1"></small></div><div class="field field-wide"><label for="current-line2">Address Line 2</label><input id="current-line2" data-address="current" name="currentLine2" data-testid="current-address-line2" /></div><div class="field"><label for="current-city">City <i>*</i></label><input id="current-city" data-address="current" name="currentCity" data-testid="current-city" /><small class="field-error" data-error-for="current-city"></small></div><div class="field"><label for="current-state">State <i>*</i></label><select id="current-state" data-address="current" name="currentState" data-testid="current-state"><option value="">Select state</option><option>Maharashtra</option><option>Karnataka</option><option>Delhi</option><option>Tamil Nadu</option><option>Gujarat</option></select><small class="field-error" data-error-for="current-state"></small></div><div class="field"><label for="current-pincode">Pincode <i>*</i></label><input id="current-pincode" data-address="current" name="currentPincode" inputmode="numeric" maxlength="6" data-testid="current-pincode" /><small class="field-error" data-error-for="current-pincode"></small></div><div class="field"><label for="current-country">Country</label><input id="current-country" data-address="current" name="currentCountry" value="India" data-testid="current-country" /></div></div></div>
+              <div class="address-block"><div class="address-title-row"><h3>Permanent Address</h3><label class="checkbox-label"><input type="checkbox" id="same-address" data-testid="same-address-checkbox" /> Same as Current Address</label></div><div class="form-grid"><div class="field field-wide"><label for="permanent-line1">Address Line 1 <i>*</i></label><input id="permanent-line1" data-address="permanent" name="permanentLine1" data-testid="permanent-address-line1" /><small class="field-error" data-error-for="permanent-line1"></small></div><div class="field field-wide"><label for="permanent-line2">Address Line 2</label><input id="permanent-line2" data-address="permanent" name="permanentLine2" data-testid="permanent-address-line2" /></div><div class="field"><label for="permanent-city">City <i>*</i></label><input id="permanent-city" data-address="permanent" name="permanentCity" data-testid="permanent-city" /><small class="field-error" data-error-for="permanent-city"></small></div><div class="field"><label for="permanent-state">State <i>*</i></label><select id="permanent-state" data-address="permanent" name="permanentState" data-testid="permanent-state"><option value="">Select state</option><option>Maharashtra</option><option>Karnataka</option><option>Delhi</option><option>Tamil Nadu</option><option>Gujarat</option></select><small class="field-error" data-error-for="permanent-state"></small></div><div class="field"><label for="permanent-pincode">Pincode <i>*</i></label><input id="permanent-pincode" data-address="permanent" name="permanentPincode" inputmode="numeric" maxlength="6" data-testid="permanent-pincode" /><small class="field-error" data-error-for="permanent-pincode"></small></div><div class="field"><label for="permanent-country">Country</label><input id="permanent-country" data-address="permanent" name="permanentCountry" value="India" data-testid="permanent-country" /></div></div></div>
+            </section>
+
+            <section class="wizard-step" data-panel="3" aria-labelledby="step-3-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 3 of 6</p><h2 id="step-3-title">Financial details</h2><p>Build the investor profile used for suitability and servicing.</p></div></div>
+              <div class="form-grid"><div class="field"><label for="annual-income">Annual Income <i>*</i></label><select id="annual-income" data-testid="annual-income"><option value="">Select income range</option><option>Less than 5 Lakhs</option><option>5–10 Lakhs</option><option>10–25 Lakhs</option><option>25–50 Lakhs</option><option>Above 50 Lakhs</option></select><small class="field-error" data-error-for="annual-income"></small></div><div class="field"><label for="employment-type">Employment Type <i>*</i></label><select id="employment-type" data-testid="employment-type"><option value="">Select employment type</option><option>Salaried</option><option>Self Employed</option><option>Business Owner</option><option>Retired</option><option>Homemaker</option></select><small class="field-error" data-error-for="employment-type"></small></div><fieldset class="field checkbox-field"><legend>Source of Wealth <i>*</i></legend><label><input type="checkbox" name="wealthSource" value="Salary" data-testid="wealth-source-salary" /> Salary</label><label><input type="checkbox" name="wealthSource" value="Business" data-testid="wealth-source-business" /> Business</label><label><input type="checkbox" name="wealthSource" value="Investments" data-testid="wealth-source-investments" /> Investments</label><label><input type="checkbox" name="wealthSource" value="Inheritance" data-testid="wealth-source-inheritance" /> Inheritance</label><small class="field-error" data-error-for="wealth-source"></small></fieldset><fieldset class="field radio-field"><legend>Investment Experience <i>*</i></legend><label><input type="radio" name="investmentExperience" value="None" data-testid="experience-none" /> None</label><label><input type="radio" name="investmentExperience" value="Limited" data-testid="experience-limited" /> Limited</label><label><input type="radio" name="investmentExperience" value="Experienced" data-testid="experience-experienced" /> Experienced</label><small class="field-error" data-error-for="investment-experience"></small></fieldset><fieldset class="field checkbox-field field-wide"><legend>Investment Objective <i>*</i></legend><label><input type="checkbox" name="objective" value="Wealth Creation" data-testid="objective-wealth" /> Wealth Creation</label><label><input type="checkbox" name="objective" value="Retirement" data-testid="objective-retirement" /> Retirement</label><label><input type="checkbox" name="objective" value="Child Education" data-testid="objective-education" /> Child Education</label><label><input type="checkbox" name="objective" value="Tax Saving" data-testid="objective-tax" /> Tax Saving</label><label><input type="checkbox" name="objective" value="Emergency Fund" data-testid="objective-emergency" /> Emergency Fund</label><small class="field-error" data-error-for="objective"></small></fieldset><div class="field"><label for="monthly-investment">Expected Monthly Investment <i>*</i></label><div class="currency-input"><span>₹</span><input id="monthly-investment" data-testid="monthly-investment" inputmode="numeric" placeholder="Minimum ₹500" /></div><small class="field-error" data-error-for="monthly-investment"></small></div><div class="field"><label for="net-worth">Net Worth</label><div class="currency-input"><span>₹</span><input id="net-worth" data-testid="net-worth" inputmode="numeric" /></div><small class="field-error" data-error-for="net-worth"></small></div><div class="field"><label for="nominee-name">Nominee Name <i>*</i></label><input id="nominee-name" data-testid="nominee-name" /><small class="field-error" data-error-for="nominee-name"></small></div><div class="field"><label for="nominee-relationship">Nominee Relationship <i>*</i></label><select id="nominee-relationship" data-testid="nominee-relationship"><option value="">Select relationship</option><option>Spouse</option><option>Parent</option><option>Child</option><option>Sibling</option><option>Other</option></select><small class="field-error" data-error-for="nominee-relationship"></small></div><div class="field"><label for="nominee-dob">Nominee DOB</label><input id="nominee-dob" type="date" data-testid="nominee-dob" /></div></div>
+            </section>
+
+            <section class="wizard-step" data-panel="4" aria-labelledby="step-4-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 4 of 6</p><h2 id="step-4-title">Risk assessment</h2><p>Answer each question to calculate the investor's suitability profile.</p></div><div class="risk-score" data-testid="risk-score"><span>Score</span><strong id="risk-score-value">0</strong><small id="risk-profile-label">Not assessed</small></div></div><div class="progress-track"><div id="risk-progress" class="progress-value"></div></div><div id="risk-questions" class="risk-questions"></div>
+            </section>
+
+            <section class="wizard-step" data-panel="5" aria-labelledby="step-5-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 5 of 6</p><h2 id="step-5-title">Document upload</h2><p>Upload clear documents in PDF, PNG, or JPEG format. Maximum file size is 5 MB.</p></div></div><div id="upload-grid" class="upload-grid"></div><p class="upload-note">Files remain in this browser for simulation only and are not sent to a server.</p>
+            </section>
+
+            <section class="wizard-step" data-panel="6" aria-labelledby="step-6-title">
+              <div class="section-heading"><div><p class="eyebrow">Step 6 of 6</p><h2 id="step-6-title">Review &amp; submit</h2><p>Confirm the captured information before creating the investor record.</p></div></div><div id="review-section" data-testid="review-section" class="review-grid"></div><label class="declaration"><input type="checkbox" id="declaration" data-testid="declaration-checkbox" /> <span>I hereby confirm the information provided is correct.</span></label>
+            </section>
+
+            <div class="wizard-actions"><button type="button" class="secondary-button" id="previous-button" data-testid="previous-button">Previous</button><button type="button" class="primary-button" id="next-button" data-testid="next-button">Save &amp; Continue</button><button type="submit" class="primary-button hidden" id="submit-onboarding" data-testid="submit-onboarding" disabled>Submit Onboarding</button></div>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title"><div class="success-modal"><div class="success-icon">✓</div><p class="eyebrow">KYC workflow complete</p><h2 id="success-title">Client Successfully Onboarded</h2><div class="success-details"><div><span>Investor ID</span><strong id="success-investor-id">-</strong></div><div><span>Folio Number</span><strong id="success-folio">-</strong></div><div><span>Timestamp</span><strong id="success-timestamp">-</strong></div></div><div class="modal-actions"><button type="button" class="secondary-button" id="view-profile-button">View Client Profile</button><button type="button" class="primary-button" id="dashboard-button">Go to Dashboard</button></div></div></div>
+    <div class="toast" id="toast" data-testid="toast" aria-live="polite"></div>
+    <script src="js/validation.js"></script>
+    <script src="js/onboarding.js"></script>
+  </body>
+</html>

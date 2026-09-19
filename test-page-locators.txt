@@ -96,6 +96,48 @@ await page.getByTestId('double-click-target').dblclick();
 await expect(page.getByTestId('sample-image')).toHaveAttribute('alt', 'Sample testing lab illustration');
 
 
+13. PLAYWRIGHT ACTION PRACTICE
+------------------------------
+
+// Mouse actions: hover()
+await page.getByTestId('action-hover-target').hover();
+
+// Keyboard actions: press()
+await page.getByTestId('keyboard-input').press('Control+A');
+await page.getByTestId('keyboard-input').press('Enter');
+
+// Text selection: selectText()
+await page.getByTestId('select-text-input').selectText();
+
+// Scrolling: scrollIntoViewIfNeeded()
+await page.getByTestId('scroll-target').scrollIntoViewIfNeeded();
+
+// File upload: setInputFiles()
+await page.getByTestId('file-input').setInputFiles('sample.txt');
+
+// Checkbox actions: isChecked(), uncheck()
+await page.getByTestId('newsletter-checkbox').isChecked();
+await page.getByTestId('newsletter-checkbox').uncheck();
+
+// Element state methods
+await page.getByTestId('sample-image').isVisible();
+await page.getByTestId('hidden-button').isHidden();
+await page.getByTestId('submit-button').isEnabled();
+await page.getByTestId('disabled-button').isDisabled();
+await page.getByTestId('editable-state').isEditable();
+
+// Multiple elements: first(), last(), nth()
+await page.getByTestId('multiple-action').first().click();
+await page.getByTestId('multiple-action').last().click();
+await page.getByTestId('multiple-action').nth(1).click();
+
+// Frames: frameLocator()
+await page.frameLocator('[data-testid="practice-frame"]').locator('body').isVisible();
+
+// Content retrieval: textContent()
+const text = await page.getByTestId('content-retrieval-target').textContent();
+
+
 4. SELECT LOCATORS
 -------------------
 
@@ -141,9 +183,8 @@ await page.getByRole('tooltip').toHaveText('This is a tooltip example.');
 8. DRAG AND DROP
 ----------------
 
-await page.getByTestId('drop-zone').dispatchEvent('dragenter');
-await page.getByTestId('drop-zone').dispatchEvent('dragover');
-await page.getByTestId('drop-zone').dispatchEvent('drop');
+await page.getByTestId('drag-source').dragTo(page.getByTestId('drop-zone'));
+await expect(page.getByTestId('drop-zone')).toContainText('dropped successfully');
 
 // Recommended when testing a real file drop:
 await page.getByTestId('file-input').setInputFiles('sample.txt');
