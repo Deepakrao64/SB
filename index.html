@@ -16,6 +16,7 @@
     <nav class="tabs" aria-label="Main navigation">
         <button class="tab-button" onclick="openTab('class-details')">Class details</button>
         <button class="tab-button" onclick="openTab('selenium-practice')">Practice lab</button>
+        <button class="tab-button" onclick="openTab('git-visualizer')">Git visualizer</button>
         <button class="tab-button" onclick="openTab('project')">Project</button>
     </nav>
 </header>
@@ -29,6 +30,62 @@
         <div class="practice-grid"><div class="panel stack"><div><h3>Feedback modal</h3><p>Test delayed availability and modal controls.</p></div><button class="btn" id="openModalBtn">Say hello</button><div class="choice-row"><label><input type="radio" name="radio-option" value="option1"> Option 1</label><label><input type="radio" name="radio-option" value="option2"> Option 2</label><label><input type="radio" name="radio-option" value="option3"> Option 3</label></div><select multiple onchange="optionSelected(this)"><option value="option1">Option 1</option><option value="option2">Option 2</option><option value="option3">Option 3</option></select><select onchange="optionSelected(this)"><option value="">Select country</option><option value="india">India</option><option value="usa">USA</option></select></div><div class="panel"><h3>Sample Form</h3><form id="sample-form" class="stack"><label>Name<input type="text" id="name" name="name" required></label><label>Email<input type="email" id="email" name="email" required></label><label>Message<textarea id="message" name="message" rows="4" required></textarea></label><input class="btn" type="submit" value="Submit"></form></div></div>
         <div class="panel" style="margin-top:18px"><h3>Sample Form submissions</h3><table id="sample-submissions-table"><thead><tr><th>Name</th><th>Email</th><th>Message</th></tr></thead><tbody></tbody></table></div>
         <div class="panel" style="margin-top:18px"><div class="section-head"><div><h3>Child window scenarios</h3><p>Launch focused pages for multi-window automation practice.</p></div></div><div class="choice-row"><button class="btn secondary" onclick="openChildWindow('childwindow1.html')">Class details</button><button class="btn secondary" onclick="openChildWindow('childwindow2.html')">Announcements</button><button class="btn secondary" onclick="openChildWindow('childwindow3.html')">Placements</button><button class="btn secondary" onclick="openChildWindow('childwindow4.html')">Assignments</button><button class="btn secondary" onclick="openChildWindow('childwindow5.html')">Partners</button></div></div>
+    </section>
+    <section id="git-visualizer" class="tab-content" aria-labelledby="git-title">
+        <div class="section-head"><div><p class="eyebrow">Interactive learning</p><h2 id="git-title">See Git move your work</h2></div><p>Select a command and follow the glowing path. The diagram shows where a change lives at each step.</p></div>
+        <div class="git-layout">
+            <div class="git-controls panel">
+                <p class="eyebrow">Try the workflow</p>
+                <h3>Start with a changed file</h3>
+                <div class="git-command-list" role="group" aria-label="Git command visualizer controls">
+                    <button class="git-command active" data-git-command="edit"><code>edit file</code><span>Make a change</span></button>
+                    <button class="git-command" data-git-command="add"><code>git add app.js</code><span>Stage selected changes</span></button>
+                    <button class="git-command" data-git-command="commit"><code>git commit -m "message"</code><span>Save a snapshot locally</span></button>
+                    <button class="git-command" data-git-command="push"><code>git push</code><span>Send commits to remote</span></button>
+                    <button class="git-command" data-git-command="fetch"><code>git fetch --all</code><span>Download remote updates only</span></button>
+                    <button class="git-command" data-git-command="pull"><code>git pull</code><span>Download and merge updates</span></button>
+                </div>
+                <button class="btn secondary git-reset" type="button">Reset visual</button>
+            </div>
+            <div class="git-stage panel">
+                <div class="git-stage-head"><div><p class="eyebrow">Live explanation</p><h3 id="git-action-title">You changed <code>app.js</code></h3></div><span id="git-step" class="git-step">1 / 4</span></div>
+                <p id="git-explanation" class="git-explanation">The change is only in your working directory. Git sees it, but it is not staged or saved in a commit yet.</p>
+                <div class="git-map" aria-label="Git workflow diagram">
+                    <div class="git-zone working" data-zone="working"><span class="zone-icon">✎</span><strong>Working directory</strong><small>Your files</small><span class="git-file">app.js</span></div>
+                    <div class="git-arrow arrow-one" aria-hidden="true">→</div>
+                    <div class="git-zone staging" data-zone="staging"><span class="zone-icon">+</span><strong>Staging area</strong><small>Ready to commit</small><span class="git-file">app.js</span></div>
+                    <div class="git-arrow arrow-two" aria-hidden="true">→</div>
+                    <div class="git-zone local" data-zone="local"><span class="zone-icon">◆</span><strong>Local repository</strong><small>Commit history</small><span class="git-file">c42f9a</span></div>
+                    <div class="git-arrow arrow-three" aria-hidden="true">→</div>
+                    <div class="git-zone remote" data-zone="remote"><span class="zone-icon">☁</span><strong>Remote repository</strong><small>GitHub / GitLab</small><span class="git-file">origin/main</span></div>
+                    <div id="git-packet" class="git-packet" aria-hidden="true">app.js</div>
+                </div>
+                <div class="git-terminal" aria-live="polite"><span>$</span> <code id="git-terminal-text"># edit app.js</code></div>
+            </div>
+        </div>
+        <div class="git-clone panel"><div><p class="eyebrow">Starting a project</p><h3><code>git clone &lt;repo-url&gt;</code></h3><p>Creates a local copy of an existing remote repository, including its files and commit history.</p></div><div class="clone-flow"><span>Remote repository</span><b>⟶</b><span>Your local folder</span></div></div>
+        <section class="team-workflow panel" aria-labelledby="team-workflow-title">
+            <div class="team-workflow-heading"><div><p class="eyebrow">Team workflow</p><h3 id="team-workflow-title">From your feature to the shared <code>main</code> branch</h3></div><div class="workflow-intro"><p>Read this from left to right. Your work remains isolated until a reviewer approves the merge request.</p><button class="btn workflow-start" type="button">Try workflow</button></div></div>
+            <div class="workflow-track" aria-label="Dev 1 and Dev 2 Git workflow">
+                <article class="workflow-step dev-one"><span class="developer-label">Dev 1</span><span class="workflow-number">1</span><span class="workflow-icon">⑂</span><h4>Create a branch</h4><code>git switch -c feature/login</code><p>Dev 1 starts a separate branch from <code>main</code>.</p><span class="branch-tag">feature/login</span></article>
+                <article class="workflow-step dev-one"><span class="developer-label">Dev 1</span><span class="workflow-number">2</span><span class="workflow-icon">⌘</span><h4>Write code</h4><code># build login screen</code><p>Changes are only on Dev 1's machine.</p><span class="branch-tag">working files</span></article>
+                <article class="workflow-step dev-one"><span class="developer-label">Dev 1</span><span class="workflow-number">3</span><span class="workflow-icon">◆</span><h4>Commit the code</h4><code>git add · git commit</code><p>Save the login work on the feature branch.</p><span class="commit-row"><i></i><i></i><i></i></span></article>
+                <article class="workflow-step dev-one"><span class="developer-label">Dev 1</span><span class="workflow-number">4</span><span class="workflow-icon">↑</span><h4>Push and open MR</h4><code>git push → feature/login → main</code><p>Dev 1 shares the branch and requests review.</p><span class="review-tag">MR open</span></article>
+                <article class="workflow-step reviewer"><span class="developer-label">Reviewer</span><span class="workflow-number">5</span><span class="workflow-icon">✓</span><h4>Review and merge</h4><code>approve → merge into main</code><p>The approved login feature becomes shared code.</p><span class="branch-tag main-tag">main updated</span></article>
+                <article class="workflow-step dev-two"><span class="developer-label">Dev 2</span><span class="workflow-number">6</span><span class="workflow-icon">↓</span><h4>Pull latest main</h4><code>git pull origin main</code><p>Dev 2 downloads Dev 1's merged login work.</p><span class="branch-tag remote-tag">local main updated</span></article>
+                <article class="workflow-step dev-two"><span class="developer-label">Dev 2</span><span class="workflow-number">7</span><span class="workflow-icon">⑂</span><h4>Create own branch</h4><code>git switch -c feature/payment</code><p>Dev 2 starts from the latest <code>main</code>.</p><span class="branch-tag">feature/payment</span></article>
+                <article class="workflow-step dev-two"><span class="developer-label">Dev 2</span><span class="workflow-number">8</span><span class="workflow-icon">⌘</span><h4>Code, commit, push</h4><code>git add · commit · push</code><p>Dev 2 builds payment work and opens an MR.</p><span class="review-tag">MR open</span></article>
+                <article class="workflow-step reviewer"><span class="developer-label">Reviewer</span><span class="workflow-number">9</span><span class="workflow-icon">⤓</span><h4>Review and merge</h4><code>feature/payment → main</code><p>After approval, the next feature is merged too.</p><span class="branch-tag main-tag">main updated</span></article>
+            </div>
+            <div class="workflow-legend"><span><b class="legend-feature"></b>Dev 1 works on login</span><span><b class="legend-main"></b>Reviewer merges to shared <code>main</code></span><span><b class="legend-review"></b>Dev 2 pulls first, then starts payment</span></div>
+            <div class="workflow-playground" aria-live="polite" hidden><div><span id="workflow-progress" class="workflow-progress">Step 1 of 5</span><strong id="workflow-prompt">Create a branch for your login work.</strong></div><button id="workflow-next" class="btn" type="button">Create feature branch</button></div>
+        </section>
+        <div class="git-notes">
+            <article class="panel"><p class="eyebrow">Pull vs fetch</p><h3>Same download, different result</h3><p><code>git fetch</code> downloads remote commits but leaves your working files unchanged. <code>git pull</code> fetches and then merges those commits into your current branch.</p></article>
+            <article class="panel"><p class="eyebrow">Safe context switch</p><h3><code>git stash</code></h3><p>Temporarily saves uncommitted work so you can switch branches. Return later and use <code>git stash pop</code> to restore it.</p></article>
+            <article class="panel"><p class="eyebrow">When work collides</p><h3>Conflicts &amp; rebase</h3><p>A conflict happens when Git cannot choose between overlapping changes. Resolve the intended code, then continue. <code>git rebase</code> replays your commits on top of another branch's latest commits.</p></article>
+        </div>
+        <p class="git-footnote"><strong>Git</strong> is the version-control software that tracks file history. <strong>GitHub, GitLab, and Bitbucket</strong> are web platforms that host Git repositories.</p>
     </section>
     <section id="project" class="tab-content"><div class="section-head"><div><p class="eyebrow">Capstone workflow</p><h2>FinVerse Wealth Portal</h2></div><p>Enterprise wealth management login experience for automation practice, built in the same domain as institutional investment platforms.</p></div><div class="card" style="padding:18px"><div class="card-icon">FV</div><h3>Enterprise login workflow</h3><p>Keep the original lab intact and launch the immersive FinVerse investor and relationship manager portal inside the project tab.</p><button class="btn" onclick="openNewHtmlPage()">Open portal</button><div class="panel" style="margin-top:18px; padding:0; overflow:hidden; border-radius:18px; border:1px solid #dfe7f4"><iframe src="MutualFundClient/FinVersePortal/index.html" title="FinVerse wealth portal login" style="width:100%; height:860px; border:0; display:block; background:#fff"></iframe></div></div></section>
     <section id="practice-page" class="tab-content">
@@ -74,6 +131,60 @@ openModalBtn.addEventListener('click', () => { modal.style.display = 'grid'; clo
 closeModalBtn.addEventListener('click', () => { modal.style.display = 'none'; });
 const sampleForm = document.getElementById('sample-form'); const sampleSubmissionsBody = document.querySelector('#sample-submissions-table tbody');
 sampleForm.addEventListener('submit', event => { event.preventDefault(); if (!sampleForm.checkValidity()) { sampleForm.reportValidity(); return; } const row = sampleSubmissionsBody.insertRow(); [sampleForm.elements.name.value, sampleForm.elements.email.value, sampleForm.elements.message.value].forEach(value => row.insertCell().textContent = value); sampleForm.reset(); });
+const gitCommands = {
+    edit: { title: 'You changed <code>app.js</code>', explanation: 'The change is only in your working directory. Git sees it, but it is not staged or saved in a commit yet.', terminal: '# edit app.js', step: '1 / 4', active: ['working'], flow: '' },
+    add: { title: '<code>git add</code> stages the change', explanation: 'Git copies the current version of <code>app.js</code> from your working directory into the staging area. This selects what your next commit will contain.', terminal: 'git add app.js', step: '2 / 4', active: ['working', 'staging'], flow: 'to-staging' },
+    commit: { title: '<code>git commit</code> creates a local snapshot', explanation: 'The staged changes are recorded in your local repository as a commit. Your work is safe locally, but teammates cannot see it yet.', terminal: 'git commit -m "Add login validation"', step: '3 / 4', active: ['staging', 'local'], flow: 'to-local' },
+    push: { title: '<code>git push</code> shares your commits', explanation: 'Your local commits are sent to the remote repository, such as GitHub or GitLab. Now the branch is available to your teammates and merge request.', terminal: 'git push origin feature/login', step: '4 / 4', active: ['local', 'remote'], flow: 'to-remote' },
+    fetch: { title: '<code>git fetch</code> checks remote updates', explanation: 'Git downloads new commits and branch information from the remote, but it does not change your current working files. Review the updates before merging.', terminal: 'git fetch --all', step: 'Remote → local', active: ['remote', 'local'], flow: 'from-remote' },
+    pull: { title: '<code>git pull</code> downloads and merges', explanation: 'Pull gets remote changes and merges them into your current branch, so your working directory is updated with the latest shared code.', terminal: 'git pull origin main', step: 'Remote → working', active: ['remote', 'local', 'working'], flow: 'from-remote' }
+};
+const gitMap = document.querySelector('.git-map');
+function showGitCommand(command) {
+    const state = gitCommands[command]; if (!state || !gitMap) return;
+    document.querySelectorAll('.git-command').forEach(button => button.classList.toggle('active', button.dataset.gitCommand === command));
+    document.querySelectorAll('.git-zone').forEach(zone => { zone.classList.toggle('is-active', state.active.includes(zone.dataset.zone)); zone.classList.toggle('is-source', zone.dataset.zone === state.active[0]); });
+    document.getElementById('git-action-title').innerHTML = state.title;
+    document.getElementById('git-explanation').innerHTML = state.explanation;
+    document.getElementById('git-terminal-text').textContent = state.terminal;
+    document.getElementById('git-step').textContent = state.step;
+    gitMap.className = 'git-map ' + state.flow;
+    if (state.flow) { requestAnimationFrame(() => gitMap.classList.add('animate')); }
+}
+document.querySelectorAll('.git-command').forEach(button => button.addEventListener('click', () => showGitCommand(button.dataset.gitCommand)));
+document.querySelector('.git-reset').addEventListener('click', () => showGitCommand('edit'));
+showGitCommand('edit');
+const workflowMessages = [
+    ['Dev 1 creates a feature branch. Main stays unchanged.', 'Dev 1: create branch'],
+    ['Dev 1 writes the login code. The work is still only on Dev 1’s machine.', 'Dev 1: write code'],
+    ['Dev 1 stages and commits the login changes to feature/login.', 'Dev 1: commit'],
+    ['Dev 1 pushes feature/login and opens a merge request to main.', 'Dev 1: push and open MR'],
+    ['A reviewer checks Dev 1’s work and merges it into main.', 'Reviewer: merge login'],
+    ['Before starting new work, Dev 2 pulls main to receive Dev 1’s merged login code.', 'Dev 2: pull main'],
+    ['Dev 2 creates a new feature/payment branch from the updated main.', 'Dev 2: create branch'],
+    ['Dev 2 writes payment code, commits it, pushes it, and opens a merge request.', 'Dev 2: push payment MR'],
+    ['After review, feature/payment merges into main. Both features are now shared.', 'Reviewer: merge payment']
+];
+const workflowSection = document.querySelector('.team-workflow');
+const workflowCards = Array.from(document.querySelectorAll('.workflow-step'));
+const workflowStart = document.querySelector('.workflow-start');
+const workflowPlayground = document.querySelector('.workflow-playground');
+const workflowNext = document.getElementById('workflow-next');
+let workflowIndex = 0;
+function renderWorkflowStep() {
+    workflowCards.forEach((card, index) => { card.classList.toggle('is-current', index === workflowIndex); card.classList.toggle('is-done', index < workflowIndex); });
+    if (workflowIndex === workflowMessages.length) {
+        document.getElementById('workflow-progress').textContent = 'Complete';
+        document.getElementById('workflow-prompt').textContent = 'Your approved feature is now part of main.';
+        workflowNext.textContent = 'Try again';
+        return;
+    }
+    document.getElementById('workflow-progress').textContent = `Step ${workflowIndex + 1} of ${workflowMessages.length}`;
+    document.getElementById('workflow-prompt').textContent = workflowMessages[workflowIndex][0];
+    workflowNext.textContent = workflowMessages[workflowIndex][1];
+}
+workflowStart.addEventListener('click', () => { workflowIndex = 0; workflowSection.classList.add('is-playing'); workflowPlayground.hidden = false; workflowStart.textContent = 'Restart workflow'; renderWorkflowStep(); });
+workflowNext.addEventListener('click', () => { workflowIndex = workflowIndex === workflowMessages.length ? 0 : workflowIndex + 1; renderWorkflowStep(); });
 </script>
 </body>
 </html>
