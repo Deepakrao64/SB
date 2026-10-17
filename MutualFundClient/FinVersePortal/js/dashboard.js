@@ -325,7 +325,7 @@ function setupQuickActions() {
       const redirectMap = {
         onboarding: 'onboarding.html',
         funds: 'funds.html',
-        trade: 'trade-center.html',
+        trade: 'trade.html',
         report: 'reports.html'
       };
 

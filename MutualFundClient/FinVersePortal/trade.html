@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FinVerse simulated mutual fund order management" />
+    <title>FinVerse | Trade Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/trade.css" />
+  </head>
+  <body>
+    <div class="trade-shell" data-testid="trade-page">
+      <aside class="trade-sidebar" data-testid="sidebar" aria-label="Sidebar navigation">
+        <a class="trade-brand" href="dashboard.html"><span class="brand-mark">FV</span><strong>FinVerse</strong></a>
+        <div class="sidebar-user"><span class="user-avatar" id="sidebar-avatar">U</span><span><strong id="sidebar-name">User</strong><small id="sidebar-role">Investor</small></span></div>
+        <nav class="trade-nav" aria-label="Main navigation">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="onboarding.html">Client Onboarding</a>
+          <a href="funds.html">Fund Explorer</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a class="active" href="trade.html" aria-current="page">Trade Center</a>
+          <a href="compliance.html">Compliance</a>
+          <a href="reports.html">Reports</a>
+        </nav>
+        <button class="sidebar-logout" type="button" data-testid="logout-button">Logout</button>
+      </aside>
+
+      <div class="trade-main">
+        <header class="trade-topbar">
+          <div class="header-title">
+            <div class="breadcrumbs"><a href="dashboard.html">Home</a><span>/</span><span>Trading</span><span>/</span><strong>Order Entry</strong></div>
+            <h1>Trade Center <span class="environment-badge" data-testid="demo-environment-badge">SIMULATED ENVIRONMENT</span></h1>
+          </div>
+          <div class="header-tools">
+            <button class="icon-button" type="button" data-testid="notification-icon" aria-label="Notifications">♧<span class="notification-dot"></span></button>
+            <div class="profile-wrap">
+              <button class="profile-button" type="button" data-testid="profile-menu" aria-expanded="false" aria-controls="profile-dropdown"><span class="profile-avatar" id="profile-avatar">U</span><span class="profile-meta"><strong id="profile-name">User</strong><small id="profile-role">Investor</small></span><span aria-hidden="true">▾</span></button>
+              <div class="profile-dropdown hidden" id="profile-dropdown"><button type="button" data-testid="profile-logout">Sign out</button></div>
+            </div>
+          </div>
+        </header>
+
+        <main class="trade-content">
+          <section class="context-panel" aria-labelledby="account-context-title">
+            <div class="section-label"><div><span class="eyebrow">ACCOUNT CONTEXT</span><h2 id="account-context-title">Investor and folio</h2></div><span class="mock-data-note">Fabricated training data</span></div>
+            <div class="context-controls">
+              <label class="control-field" id="investor-control">Investor account
+                <select id="investor-select" data-testid="investor-selector" aria-label="Investor account"></select>
+              </label>
+              <label class="control-field">Folio
+                <select id="folio-select" data-testid="folio-selector" aria-label="Investor folio"></select>
+              </label>
+              <div class="account-fact"><small>Investor</small><strong id="context-investor-name">—</strong></div>
+              <div class="account-fact"><small>Investor ID</small><strong id="context-investor-id">—</strong></div>
+              <div class="account-fact"><small>KYC status</small><strong id="context-kyc" data-testid="kyc-status">—</strong></div>
+              <div class="account-fact"><small>Risk profile</small><strong id="context-risk">—</strong></div>
+              <div class="account-fact"><small>Holding mode</small><strong id="context-holding-mode">—</strong></div>
+              <div class="account-fact"><small>Bank mandate</small><strong id="context-mandate">—</strong></div>
+              <div class="account-fact"><small>Mock available cash</small><strong id="context-cash">—</strong></div>
+            </div>
+          </section>
+
+          <div class="workspace-grid">
+            <section class="panel entry-panel" aria-labelledby="entry-title">
+              <div class="panel-heading"><div><span class="eyebrow">ORDER ENTRY</span><h2 id="entry-title">Create an instruction</h2></div><span class="training-note">Mock order only</span></div>
+              <form id="trade-form" novalidate>
+                <div class="form-section transaction-section">
+                  <label class="control-field transaction-control">Transaction type
+                    <select id="transaction-type" data-testid="transaction-type">
+                      <option value="purchase">Purchase</option>
+                      <option value="additional">Additional Purchase</option>
+                      <option value="redemption">Redemption</option>
+                      <option value="sip">SIP Registration</option>
+                    </select>
+                  </label>
+                  <div class="scheme-search-wrap">
+                    <label class="control-field" for="scheme-search">Mutual fund scheme</label>
+                    <input id="scheme-search" data-testid="scheme-search" type="search" autocomplete="off" aria-autocomplete="list" aria-controls="scheme-results" aria-expanded="false" placeholder="Search scheme name or code" />
+                    <div class="scheme-results hidden" id="scheme-results" data-testid="scheme-results" role="listbox"></div>
+                    <p class="field-error" id="scheme-error" data-testid="field-error-scheme" aria-live="polite"></p>
+                  </div>
+                  <div class="selected-scheme hidden" id="selected-scheme" data-testid="selected-scheme" aria-live="polite"></div>
+                </div>
+
+                <div class="form-section">
+                  <h3>Transaction details</h3>
+                  <div id="transaction-fields" class="transaction-fields"></div>
+                  <p class="field-error" id="transaction-error" data-testid="field-error-transaction" aria-live="polite"></p>
+                </div>
+
+                <div class="form-section" id="payment-section">
+                  <h3>Payment instruction</h3>
+                  <div id="payment-details" class="payment-details"></div>
+                </div>
+
+                <section class="eligibility-section" aria-labelledby="eligibility-title">
+                  <div class="eligibility-heading"><h3 id="eligibility-title">Pre-submission checks</h3><span class="simulated-checks">Simulated business checks</span></div>
+                  <ul id="eligibility-list" data-testid="eligibility-checks"></ul>
+                  <p class="suitability-warning hidden" id="suitability-warning" data-testid="suitability-warning" role="status"></p>
+                </section>
+                <p class="form-alert hidden" id="form-alert" role="alert" data-testid="trade-validation-summary"></p>
+                <div class="form-actions"><button class="secondary-button" type="button" id="reset-form">Clear entry</button><button class="primary-button" type="submit" data-testid="review-order">Review Order</button></div>
+              </form>
+            </section>
+
+            <aside class="panel summary-panel" aria-labelledby="summary-title">
+              <div class="panel-heading"><div><span class="eyebrow">ORDER SUMMARY</span><h2 id="summary-title">Indicative calculation</h2></div></div>
+              <p class="summary-intro">Estimates use the selected mock NAV and configured demo assumptions.</p>
+              <div id="calculation-content" data-testid="order-summary"><p class="empty-summary">Select an eligible scheme and enter transaction details.</p></div>
+              <p class="summary-disclaimer">Training estimate only; not a quote, tax calculation, or real transaction charge. Unit estimates are rounded down to four decimals; amount-based redemptions use the same precision.</p>
+            </aside>
+          </div>
+
+          <section class="panel order-book-panel" aria-labelledby="order-book-title" data-testid="order-book">
+            <div class="order-book-header">
+              <div><span class="eyebrow">ORDER MANAGEMENT</span><h2 id="order-book-title">Order book</h2><p>Simulated instructions and their workflow status.</p></div>
+              <button class="secondary-button reset-data-button" id="reset-demo" type="button" data-testid="reset-demo-data">Reset demo data</button>
+            </div>
+            <div class="order-filters">
+              <label class="sr-only" for="order-search">Search investor, scheme, or order reference</label><input id="order-search" data-testid="order-search" type="search" placeholder="Search investor, scheme, reference" />
+              <label class="sr-only" for="type-filter">Filter by transaction type</label><select id="type-filter" data-testid="order-type-filter"><option value="">All transaction types</option><option>Purchase</option><option>Additional Purchase</option><option>Redemption</option><option>SIP Registration</option></select>
+              <label class="sr-only" for="status-filter">Filter by status</label><select id="status-filter" data-testid="order-status-filter"><option value="">All statuses</option><option>Submitted</option><option>Pending Approval</option><option>Accepted</option><option>Rejected</option><option>Cancelled</option></select>
+              <button class="secondary-button" id="sort-orders" type="button" data-testid="sort-orders" aria-label="Sort by submission date, newest first">Newest first ↓</button>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Order reference</th><th>Investor</th><th>Folio</th><th>Scheme</th><th>Transaction</th><th>Amount</th><th>Units</th><th>Submitted</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="orders-body"></tbody>
+              </table>
+            </div>
+            <div class="order-book-footer"><p id="order-count" aria-live="polite"></p><div id="order-pagination" class="pagination" data-testid="order-pagination"></div></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="review-modal">
+      <section class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="review-title" data-testid="order-review-modal">
+        <div class="dialog-header"><div><span class="eyebrow">PRE-SUBMISSION REVIEW</span><h2 id="review-title">Review order instruction</h2></div><button class="dialog-close" type="button" data-close-modal="review-modal" aria-label="Close review">×</button></div>
+        <div id="review-content"></div>
+        <p class="dialog-disclaimer">This is a simulated order for training. It is not submitted to a fund house and does not represent execution or settlement.</p>
+        <div class="dialog-actions"><button class="secondary-button" type="button" data-testid="back-to-edit" data-close-modal="review-modal">Back to Edit</button><button class="primary-button" type="button" id="submit-order" data-testid="submit-order">Submit Order</button></div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop hidden" id="details-modal">
+      <section class="dialog-panel details-dialog" role="dialog" aria-modal="true" aria-labelledby="details-title" data-testid="order-details">
+        <div class="dialog-header"><div><span class="eyebrow">ORDER RECORD</span><h2 id="details-title">Order details</h2></div><button class="dialog-close" type="button" data-close-modal="details-modal" aria-label="Close order details">×</button></div>
+        <div id="details-content"></div>
+      </section>
+    </div>
+    <div class="toast hidden" id="toast" role="status" aria-live="polite" data-testid="order-acknowledgement"></div>
+    <script src="js/mockFunds.js"></script>
+    <script src="js/trade.js"></script>
+  </body>
+</html>
